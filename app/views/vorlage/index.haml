@@ -1,0 +1,29 @@
+#vorlagen
+  %h1 Vorlagen
+
+  - @vorlagen.each_slice(3) do |vorlagen_slice|
+    .row
+      - vorlagen_slice.each do |vorlage|
+        .span4
+          .tile
+            %h4.tile-title=vorlage.title
+            %span=vorlage.created_at.strftime("%d.%m.%Y")
+            %h5="Zuständig: #{vorlage.zustaendig}"
+            - if vorlage.sitzung.kommende.count > 0
+              %h6="Nächste Beratungen (#{vorlage.sitzung.kommende.count}):"
+            - if vorlage.sitzung.ohne_termin.count > 0
+              = render partial: "sitzung_list_details", locals: { sitzungen: vorlage.sitzung.kommende, klass:"kommende" }
+              %h6
+                ="Noch Ohne Termin: (#{vorlage.sitzung.ohne_termin.count})"
+                %a.closed
+                  %span.fui-plus-16
+              = render partial: "sitzung_list_details", locals: { sitzungen: vorlage.sitzung.ohne_termin, klass:"ohne_termin" }
+            - if vorlage.sitzung.abgelaufende.count > 0
+              %h6
+                ="Abgelaufende: (#{vorlage.sitzung.abgelaufende.count})"
+                %span.fui-plus-16
+              = render partial: "sitzung_list_details", locals: { sitzungen: vorlage.sitzung.abgelaufende, klass:"abgelaufende" }
+
+            %a.btn.btn-info.btn-large.btn-block{href: "#{@base_url}#{vorlage.detail_url}", target: "_blank"} Detail
+
+

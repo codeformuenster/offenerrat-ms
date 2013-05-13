@@ -1,0 +1,2 @@
+class GremiumController < ApplicationController
+end

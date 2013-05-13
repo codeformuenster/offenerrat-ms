@@ -1,0 +1,7 @@
+%ul{class: klass}
+  - sitzungen.each do |sitzung|
+    %li
+      %strong
+        - if sitzung.datum
+          =link_to "#{sitzung.short_datum}: ", sitzung_path(sitzung)
+      =sitzung.gremium.title
