@@ -1,0 +1,7 @@
+- gremien.each do |gremium|
+  %tr
+    %td
+    %td=link_to "#{gremium.title}", gremium
+    %td= "#{gremium.vorlagen_count}"
+    %td= gremium.next_sitzung.formatted_datum if gremium.next_sitzung
+    %td= link_to gremium.last_sitzung.formatted_datum, gremium.last_sitzung if gremium.last_sitzung

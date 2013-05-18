@@ -1,0 +1,14 @@
+.row-fluid
+  .span12
+    %h1=@gremium.title
+    #details
+      //%p="x Mitglieder"
+      %p="#{@gremium.vorlagen_count} Vorlagen"
+
+.row-fluid
+  .span6
+    %h3 Nächste Sitzungen
+    = render partial: "sitzung/list_details", locals: { sitzungen: @gremium.sitzung.kommende, klass:"kommende" }
+  .span6
+    %h3 Vorlagen
+    = render partial: "vorlage/list", locals: { vorlagen: @gremium.vorlagen, gremium: @gremium }

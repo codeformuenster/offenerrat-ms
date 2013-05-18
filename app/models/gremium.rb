@@ -3,5 +3,20 @@ class Gremium < ActiveRecord::Base
   validates :title, uniqueness: true
 
   has_many :sitzung
-  has_many :vorlage, through: :sitzung
+  has_many :vorlagen, through: :sitzung, source: :vorlagen
+
+  def vorlagen_count
+    self.vorlagen.count
+  end
+
+  def typen
+    SitzungVorlage.joins(:sitzung).where("sitzung.gremium_id = ?",self.id)
+  end
+
+  def next_sitzung
+    self.sitzung.kommende.first
+  end
+  def last_sitzung
+    self.sitzung.abgelaufende.first
+  end
 end

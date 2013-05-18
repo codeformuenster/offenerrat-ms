@@ -1,0 +1,16 @@
+.row-fluid
+  .span12
+    %h1 Gremien
+
+.row-fluid
+  .span12
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th Name
+          %th # Vorlagen
+          %th nächste Sitzung
+          %th letzte Sitzung
+      %tbody
+        = render partial: "gremium/table_list", locals: { gremien: @gremien }
