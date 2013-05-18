@@ -1,0 +1,17 @@
+!!!
+%html{lang: 'de'}
+  %head
+    = render partial: 'layouts/head'
+
+  %body
+    #help-wrapper
+      = render partial: 'layouts/navigation'
+      = render partial: 'layouts/breadcrumb'
+      = render partial: 'layouts/alerts'
+    .container-fluid
+      = yield
+
+      #loading-spinner{:style => "display:none"}
+        =image_tag('ajax-loader-2.gif', id: 'ajax-loader')
+
+      %footer

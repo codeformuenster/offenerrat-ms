@@ -15,6 +15,10 @@ Offenerrat::Application.routes.draw do
   resources :gremium
   resources :sitzung
 
+  match "/gremien" => "gremium#index"
+  match "/vorlagen" => "vorlage#index"
+  match "/sitzungen" => "sitzung#index"
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -50,7 +54,7 @@ Offenerrat::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'vorlage#index'
+  root :to => 'pages#index'
 
   # See how all your routes lay out with "rake routes"
 

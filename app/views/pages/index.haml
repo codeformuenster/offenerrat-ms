@@ -1,0 +1,26 @@
+.row-fluid
+  .span6
+    .row-fluid
+      .span12
+        %h5 neueste Vorlagen
+        = render partial: "vorlage/list", locals: { vorlagen: @vorlagen, gremium: nil }
+    .row-fluid
+      .span12
+        %h5 Twitter #ratms
+        #tweets
+          <a class="twitter-timeline" href="https://twitter.com/offenerrat/ratsfraktionen" data-widget-id="260297516908679168">Tweets von @offenerrat/ratsfraktionen</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  .span2
+  .span4
+    %dl
+      %dt Sitzungen
+      - if @sitzungen_heute.count > 0
+        %dd
+          = "Heute"
+          = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_heute, klass: "heute"}
+      - if @sitzungen_morgen.count > 0
+        %dd
+          = "Morgen"
+          = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_morgen, klass: "morgen"}
+      %dd
+        = render partial: "sitzung/list_details", locals: { sitzungen: @sitzungen_woche, klass: "woche"}
