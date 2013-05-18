@@ -1,6 +1,8 @@
-.row-fluid
+#vorlage.row-fluid
   .span-12
-    %h1=@vorlage.name
+    %h1
+      %span=@vorlage.name
+      %a{href: "#{@vorlage.base_url}#{@vorlage.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
     %h2=@vorlage.title
 .row-fluid
   .span12
