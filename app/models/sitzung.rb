@@ -2,6 +2,10 @@ class Sitzung < ActiveRecord::Base
   self.table_name = "sitzung"
 
   scope :kommende, lambda { where("datum >= ?", Time.zone.now.beginning_of_day ).order("datum ASC") }
+  scope :kommende_fuenf, lambda { where("datum >= ?", Time.zone.now.beginning_of_day ).order("datum ASC").limit(5) }
+  scope :heute, lambda { where(datum: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day ) }
+  scope :morgen, lambda { where(datum: Time.zone.now.tomorrow.beginning_of_day..Time.zone.now.tomorrow.end_of_day ) }
+  scope :kommende_nach_morgen, lambda { where("datum >= ?", Time.zone.now.tomorrow.end_of_day ).order("datum ASC").limit(2) }
   scope :abgelaufende, lambda { where("datum < ?", Time.zone.now.beginning_of_day ).order("datum DESC") }
   scope :ohne_termin, lambda { where("datum IS NULL or CAST(datum as text) = ''") }
   scope :zustaendig, lambda { where("typ LIKE %Entscheidung%") }
@@ -16,5 +20,11 @@ class Sitzung < ActiveRecord::Base
   end
   def short_datum
     self.datum.strftime('%d.%m.')
+  end
+  def time
+    self.datum.strftime('%H:%M')
+  end
+  def to_count
+    "0"
   end
 end

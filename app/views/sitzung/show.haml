@@ -1,3 +1,8 @@
-%h1=@sitzung.formatted_datum
-
-= render partial: "vorlage/list", locals: { vorlagen: @sitzung.vorlagen }
+.row-fluid
+  .span12
+    %h1=@sitzung.gremium.title
+    %h2="#{@sitzung.formatted_datum}"
+.row-fluid
+  .span6
+    %h3 Vorlagen
+    = render partial: "vorlage/list", locals: { vorlagen: @sitzung.vorlagen, gremium: @sitzung.gremium }

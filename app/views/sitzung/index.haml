@@ -1,0 +1,31 @@
+.row-fluid
+  .span12
+    %h1 Kommende Sitzungen
+
+.row-fluid
+  .span12
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th Datum
+          %th
+          %th Ort
+      %tbody
+        = render partial: "sitzung/table_list", locals: { sitzungen: @sitzungen }
+
+.row-fluid
+  .span12
+    %h1 Vergangende Sitzungen
+
+.row-fluid
+  .span12
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th Datum
+          %th
+          %th Ort
+      %tbody
+        = render partial: "sitzung/table_list", locals: { sitzungen: @abgelaufende }

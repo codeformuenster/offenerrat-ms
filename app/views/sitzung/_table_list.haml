@@ -1,0 +1,7 @@
+- sitzungen.each do |sitzung|
+  - if sitzung.datum
+    %tr
+      %td=link_to sitzung.gremium.title, sitzung.gremium
+      %td=link_to sitzung.short_datum, sitzung if sitzung.datum
+      %td= "#{sitzung.to_count}"
+      %td= "#{sitzung.raum}" if sitzung.raum
