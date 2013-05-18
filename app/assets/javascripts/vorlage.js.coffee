@@ -5,7 +5,7 @@ $(document).ready ->
   if $("#vorlagen").length > 0
     $("ul.ohne_termin").hide()
     $("a.closed, a.open").click ->
-      $(this).parent('h6').next('ul').toggle()
+      $(this).parent('h6').find('ul').toggle()
       $(this).toggleClass('closed')
       $(this).toggleClass('open')
 

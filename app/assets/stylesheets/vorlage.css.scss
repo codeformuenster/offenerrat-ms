@@ -1,9 +1,27 @@
 // Place all the styles related to the Vorlage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#vorlagen .row {
-  margin-bottom: 20px;
+#vorlagen .row-fluid {
+  margin-bottom: 20px
 }
 #vorlagen ul {
-  text-align:left;
+  text-align:left
+}
+#vorlagen .tile {
+  min-height: 250px
+}
+#vorlagen .tile h5 {
+  font-weight:bold
+}
+#vorlagen .tile h6,#vorlagen .tile h5  {
+  text-transform:none
+}
+#vorlagen .tile .detail_link {
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+  width: 90%;
+}
+#vorlagen .tile .abgelaufende {
+  margin: 0 0 50px 25px
 }
