@@ -1,3 +1,6 @@
 %ul
   - vorlagen.each do |vorlage|
-    %li="#{vorlage.name} #{vorlage.title}"
+    %li
+      =link_to "#{vorlage.name}", vorlage
+      ="#{vorlage.title}"
+      ="(#{vorlage.typ_for_gremium(gremium)})" if gremium

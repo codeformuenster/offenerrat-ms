@@ -1,0 +1,8 @@
+.row-fluid
+  .span-12
+    %h1=@vorlage.name
+    %h2=@vorlage.title
+.row-fluid
+  .span12
+    %h3 Beteiligte Gremien
+    = render partial: "gremium/list", locals: { gremien: @vorlage.gremium }
