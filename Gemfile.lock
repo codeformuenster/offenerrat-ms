@@ -62,6 +62,7 @@ GEM
     mime-types (1.22)
     multi_json (1.7.2)
     multipart-post (1.2.0)
+    newrelic_rpm (3.5.5.38)
     pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.10)
@@ -138,6 +139,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   haml
   jquery-rails
+  newrelic_rpm
   pg
   pry
   rails (= 3.2.13)
