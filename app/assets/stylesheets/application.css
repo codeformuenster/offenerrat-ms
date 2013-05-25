@@ -13,3 +13,9 @@
  *= require bootstrap
  *= require flat-ui
  */
+
+
+#footer_wrapper {
+  padding: 20px;
+  color: #000;
+}

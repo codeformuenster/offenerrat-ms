@@ -15,9 +15,11 @@ Offenerrat::Application.routes.draw do
   resources :gremium
   resources :sitzung
 
-  match "/gremien" => "gremium#index"
-  match "/vorlagen" => "vorlage#index"
-  match "/sitzungen" => "sitzung#index"
+  match "/gremien" => 'gremium#index'
+  match "/vorlagen" => 'vorlage#index'
+  match "/sitzungen" => 'sitzung#index'
+
+  match "impressum" => 'pages#impressum'
 
   # Sample resource route with options:
   #   resources :products do
