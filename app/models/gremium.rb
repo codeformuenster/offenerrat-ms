@@ -19,4 +19,9 @@ class Gremium < ActiveRecord::Base
   def last_sitzung
     self.sitzung.abgelaufende.first
   end
+
+
+  def to_s
+    self.title
+  end
 end
