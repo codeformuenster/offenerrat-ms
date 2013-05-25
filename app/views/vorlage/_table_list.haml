@@ -1,0 +1,8 @@
+- vorlagen.each do |vorlage|
+  %tr
+    %td=link_to "#{vorlage.name}", vorlage
+    %td="#{vorlage.title}"
+    %td=vorlage.gremien_list
+    - if gremium
+      %td="#{vorlage.typ_for_gremium(gremium)}"
+

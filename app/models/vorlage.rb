@@ -16,4 +16,9 @@ class Vorlage < ActiveRecord::Base
   def typ_for_gremium(gremium)
     self.sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
   end
+
+  def gremien_list
+    self.gremium.map(&:to_s).join(', ')
+  end
+
 end
