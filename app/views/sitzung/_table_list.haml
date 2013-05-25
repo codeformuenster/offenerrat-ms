@@ -2,6 +2,6 @@
   - if sitzung.datum
     %tr
       %td=link_to sitzung.gremium.title, sitzung.gremium
-      %td=link_to sitzung.short_datum, sitzung if sitzung.datum
-      %td= "#{sitzung.to_count}"
+      %td=link_to sitzung.intelligent_datum, sitzung if sitzung.datum
+      %td= "#{sitzung.to_count}" if sitzung.to_count > 0
       %td= "#{sitzung.raum}" if sitzung.raum

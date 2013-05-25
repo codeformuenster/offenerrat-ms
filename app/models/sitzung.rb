@@ -21,6 +21,13 @@ class Sitzung < ActiveRecord::Base
   def short_datum
     self.datum.strftime('%d.%m.')
   end
+  def intelligent_datum
+    if self.datum < DateTime.now.beginning_of_year
+      formatted_datum
+    else
+      short_datum
+    end
+  end
   def time
     self.datum.strftime('%H:%M')
   end
