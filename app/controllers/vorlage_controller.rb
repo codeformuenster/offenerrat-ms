@@ -1,6 +1,6 @@
 class VorlageController < ApplicationController
   def index
-    @vorlagen = Vorlage.order("updated_at DESC").all
+    @vorlagen = Vorlage.order("datum DESC").all
   end
 
   def show

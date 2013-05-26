@@ -4,6 +4,7 @@
       %span=@vorlage.name
       %a{href: "#{@vorlage.base_url}#{@vorlage.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
     %h2=@vorlage.title
+    %p=@vorlage.datum.strftime("%d.%m.%Y")
 .row-fluid
   .span12
     %h3 Beteiligte Gremien
