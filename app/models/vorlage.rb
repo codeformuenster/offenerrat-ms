@@ -6,8 +6,9 @@ class Vorlage < ActiveRecord::Base
   has_many :gremium, through: :sitzung
   has_many :sitzung, through: :sitzung_vorlage
   has_many :sitzung_vorlage
+  has_many :subjects, through: :gremium
 
-  scope :kommende, lambda { where("created_at <= ?", Time.zone.now.beginning_of_day ).order("created_at DESC").limit(5) }
+  scope :letzte, lambda { where("vorlage.created_at <= ?", Time.zone.now.beginning_of_day ).order("vorlage.created_at ASC") }
 
   def base_url
     "https://www.stadt-muenster.de/sessionnet/sessionnetbi/"

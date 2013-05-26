@@ -4,6 +4,7 @@ class Gremium < ActiveRecord::Base
 
   has_many :sitzung
   has_many :vorlagen, through: :sitzung, source: :vorlagen
+  has_one :subject
 
   def vorlagen_count
     self.vorlagen.count
