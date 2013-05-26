@@ -7,7 +7,7 @@
         .span4
           .tile
             %h4.tile-title=vorlage.title
-            %span=vorlage.datum.strftime("%d.%m.%Y")
+            %span=vorlage.datum.strftime("%d.%m.%Y") if vorlage.datum
             %h5="Zuständig: #{vorlage.zustaendig}"
             - if vorlage.sitzung.kommende.count > 0
               %h6="Nächste Beratungen (#{vorlage.sitzung.kommende.count}):"
