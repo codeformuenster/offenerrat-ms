@@ -1,8 +1,8 @@
 class SitzungController < ApplicationController
 
   def index
-    @sitzungen = Sitzung.kommende
-    @abgelaufende = Sitzung.abgelaufende
+    @sitzungen = Sitzung.dieser_monat
+    @abgelaufende = Sitzung.letzter_monat
   end
 
   def show
