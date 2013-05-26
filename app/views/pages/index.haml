@@ -13,15 +13,32 @@
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   .span1
   .span4
-    %dl.sitzungen
-      %dt Sitzungen
-      - if @sitzungen_heute.count > 0
-        %dd
-          = "Heute"
-          = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_heute, klass: "heute"}
-      - if @sitzungen_morgen.count > 0
-        %dd
-          = "Morgen"
-          = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_morgen, klass: "morgen"}
-      %dd
-        = render partial: "sitzung/list_details", locals: { sitzungen: @sitzungen_woche, klass: "woche"}
+    .row-fluid
+      .span12
+        %dl.sitzungen
+          %dt Sitzungen
+          - if @sitzungen_heute.count > 0
+            %dd
+              = "Heute"
+              = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_heute, klass: "heute"}
+          - if @sitzungen_morgen.count > 0
+            %dd
+              = "Morgen"
+              = render partial: "sitzung/list_details_time", locals: { sitzungen: @sitzungen_morgen, klass: "morgen"}
+          %dd
+            = "Kommende Woche"
+            = render partial: "sitzung/list_details", locals: { sitzungen: @sitzungen_woche, klass: "woche"}
+    .row-fluid
+      .span12
+        %dl
+          %dt Letzte Themen
+          %dd
+            - @last_themen.each do |thema|
+              %p=thema.title
+    .row-fluid
+      .span12
+        %dl
+          %dt Kommende Themen
+          %dd
+            - @next_themen.each do |thema|
+              %p=thema.title
