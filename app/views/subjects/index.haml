@@ -1,0 +1,10 @@
+.row-fluid
+  .span12
+    %h1 Themen
+
+    - @subjects.each do |subject|
+      %h4=subject.title
+      %dl
+        %dt Vorlagen
+        - subject.vorlagen.letzte.limit(5).each do |vorlage|
+          %dd=link_to "#{vorlage.name}: #{vorlage.title}", vorlage
