@@ -3,7 +3,8 @@
     .span12
       %h1
         %span=@sitzung.gremium.title
-        %a{href: "#{@sitzung.base_url}#{@sitzung.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
+        - if @sitzung.detail_url && @sitzung.base_url
+          %a{href: "#{@sitzung.base_url}#{@sitzung.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
   .row-fluid
     .span4
       %table.table.table-condensed
