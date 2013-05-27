@@ -1,6 +1,8 @@
 .row-fluid
   .span12
-    %h1 Kommende Sitzungen
+    %h1
+      %span Kommende Sitzungen
+      = link_to image_tag('rss.png'), sitzung_index_path(:rss)
 
 .row-fluid
   .span12

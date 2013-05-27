@@ -1,6 +1,7 @@
 #vorlagen
-  %h1 Vorlagen
-
+  %h1
+    %span Vorlagen
+    = link_to image_tag('rss.png'), vorlage_index_path(:rss)
   - @vorlagen.each_slice(3) do |vorlagen_slice|
     .row-fluid
       - vorlagen_slice.each do |vorlage|
