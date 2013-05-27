@@ -45,4 +45,8 @@ class Sitzung < ActiveRecord::Base
   def themen
     subjects.uniq unless gremium.subject
   end
+
+  def base_url
+    Offenerrat::Application::BASE_URL
+  end
 end

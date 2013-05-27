@@ -11,7 +11,7 @@ class Vorlage < ActiveRecord::Base
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
 
   def base_url
-    "https://www.stadt-muenster.de/sessionnet/sessionnetbi/"
+    Offenerrat::Application::BASE_URL
   end
 
   def title

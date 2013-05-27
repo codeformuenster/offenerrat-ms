@@ -1,25 +1,28 @@
-.row-fluid
-  .span12
-    %h1=@sitzung.gremium.title
-.row-fluid
-  .span4
-    %table.table.table-condensed
-      %tr
-        %td=@sitzung.formatted_datum
-      %tr
-        %td=@sitzung.raum
-      %tr
-        %td=@sitzung.formatted_time
-      %tr
-        %td="#{@sitzung.vorlagen.count} Vorlagen"
-.row-fluid
-  .span6
-    %h3 Vorlagen
-    = render partial: "vorlage/list", locals: { vorlagen: @sitzung.vorlagen, gremium: @sitzung.gremium }
-  - if @sitzung.themen && @sitzung.themen.count > 0
+#sitzung
+  .row-fluid
+    .span12
+      %h1
+        %span=@sitzung.gremium.title
+        %a{href: "#{@sitzung.base_url}#{@sitzung.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
+  .row-fluid
+    .span4
+      %table.table.table-condensed
+        %tr
+          %td=@sitzung.formatted_datum
+        %tr
+          %td=@sitzung.raum
+        %tr
+          %td=@sitzung.formatted_time
+        %tr
+          %td="#{@sitzung.vorlagen.count} Vorlagen"
+  .row-fluid
     .span6
-      %h3 Themen
-      %ul
-        - @sitzung.themen.each do |thema|
-          %li=thema.title
+      %h3 Vorlagen
+      = render partial: "vorlage/list", locals: { vorlagen: @sitzung.vorlagen, gremium: @sitzung.gremium }
+    - if @sitzung.themen && @sitzung.themen.count > 0
+      .span6
+        %h3 Themen
+        %ul
+          - @sitzung.themen.each do |thema|
+            %li=thema.title
 
