@@ -11,8 +11,8 @@
             %h5="Zuständig: #{vorlage.zustaendig}"
             - if vorlage.sitzung.kommende.count > 0
               %h6="Nächste Beratungen (#{vorlage.sitzung.kommende.count}):"
-            - if vorlage.sitzung.ohne_termin.count > 0
               = render partial: "sitzung/list_details", locals: { sitzungen: vorlage.sitzung.kommende, klass:"kommende" }
+            - if vorlage.sitzung.ohne_termin.count > 0
               %h6
                 ="Noch Ohne Termin: (#{vorlage.sitzung.ohne_termin.count})"
                 %a.closed
