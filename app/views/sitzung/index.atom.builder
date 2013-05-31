@@ -6,7 +6,10 @@ atom_feed do |feed|
     feed.entry(sitzung) do |entry|
       entry.title(sitzung)
       entry.content(sitzung.description, :type => 'html')
-      entry.url sitzung_url(sitzung)
+      entry.link href: sitzung_url(sitzung)
+      entry.author do |author|
+        author.name("or")
+      end
     end
   end
 end

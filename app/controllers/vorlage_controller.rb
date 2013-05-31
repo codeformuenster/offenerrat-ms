@@ -3,8 +3,9 @@ class VorlageController < ApplicationController
     @vorlagen = Vorlage.order("datum DESC").all
 
     respond_to do |format|
-       format.rss { render :layout => false }
-       format.html
+      format.html
+      format.rss { render :layout => false }
+      format.atom
     end
   end
 

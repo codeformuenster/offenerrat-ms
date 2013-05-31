@@ -6,6 +6,7 @@ class SitzungController < ApplicationController
     respond_to do |format|
        format.rss { render :layout => false }
        format.html
+       format.atom { @sitzungen = Sitzung.feed }
     end
   end
 

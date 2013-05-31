@@ -1,6 +1,7 @@
+#encoding: utf-8
 class Sitzung < ActiveRecord::Base
   self.table_name = "sitzung"
-
+  attr_accessible :datum
   scope :kommende, lambda { where("datum >= ?", Time.zone.now.beginning_of_day ).order("datum ASC") }
   scope :kommende_fuenf, lambda { where("datum >= ?", Time.zone.now.beginning_of_day ).order("datum ASC").limit(5) }
   scope :heute, lambda { where(datum: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day ) }
@@ -11,6 +12,7 @@ class Sitzung < ActiveRecord::Base
   scope :abgelaufende, lambda { where("datum < ?", Time.zone.now.beginning_of_day ).order("datum DESC") }
   scope :ohne_termin, lambda { where("datum IS NULL or CAST(datum as text) = ''") }
   scope :zustaendig, lambda { where("typ LIKE %Entscheidung%") }
+  scope :feed, lambda { where("datum < ?", Time.zone.now.tomorrow.end_of_day ).order("datum DESC") }
 
   belongs_to :gremium
   has_many :vorlagen, through: :sitzung_vorlage, source: :vorlage
@@ -53,6 +55,6 @@ class Sitzung < ActiveRecord::Base
     "Nächste Sitzung am #{formatted_datum} um #{formatted_time}, #{raum}"
   end
   def to_s
-    "#{sitzung.formatted_datetime} #{sitzung.gremium.title}"
+    "#{formatted_datetime} #{gremium.title}"
   end
 end
