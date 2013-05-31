@@ -49,4 +49,10 @@ class Sitzung < ActiveRecord::Base
   def base_url
     Offenerrat::Application::BASE_URL
   end
+  def description
+    "Nächste Sitzung am #{formatted_datum} um #{formatted_time}, #{raum}"
+  end
+  def to_s
+    "#{sitzung.formatted_datetime} #{sitzung.gremium.title}"
+  end
 end
