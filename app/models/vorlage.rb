@@ -28,9 +28,9 @@ class Vorlage < ActiveRecord::Base
   def gremien_list
     self.gremium.map(&:to_s).join(', ')
   end
-  
+
   def to_s
-    "#{stadt_id}: #{title}"
+    "#{name}: #{title}"
   end
 
   def description
