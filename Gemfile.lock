@@ -64,6 +64,11 @@ GEM
     multipart-post (1.2.0)
     newrelic_rpm (3.5.5.38)
     pg (0.15.1)
+    pg_search (0.5.7)
+      activerecord (>= 3)
+      activesupport (>= 3)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -92,6 +97,10 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    ransack (0.7.2)
+      actionpack (~> 3.0)
+      activerecord (~> 3.0)
+      polyamorous (~> 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec-core (2.12.2)
@@ -141,8 +150,10 @@ DEPENDENCIES
   jquery-rails
   newrelic_rpm
   pg
+  pg_search
   pry
   rails (= 3.2.13)
+  ransack
   rspec-rails
   sass-rails (~> 3.2.3)
   twitter

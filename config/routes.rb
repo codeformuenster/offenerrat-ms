@@ -20,6 +20,7 @@ Offenerrat::Application.routes.draw do
   match "/vorlagen" => 'vorlage#index'
   match "/sitzungen" => 'sitzung#index'
 
+  match "/search" => 'search#index'
   match "impressum" => 'pages#impressum'
 
   # Sample resource route with options:
