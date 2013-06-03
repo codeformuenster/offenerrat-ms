@@ -19,6 +19,8 @@ class Sitzung < ActiveRecord::Base
   has_many  :sitzung_vorlage
   has_many :subjects, through: :vorlagen, source: :subjects
 
+  include PgSearch
+
   def formatted_datetime
     self.datum.strftime('%d.%m.%Y %H:%M')
   end

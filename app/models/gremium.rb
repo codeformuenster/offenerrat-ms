@@ -6,6 +6,7 @@ class Gremium < ActiveRecord::Base
   has_many :vorlagen, through: :sitzung, source: :vorlagen
   has_one :subject
 
+  include PgSearch
   def vorlagen_count
     self.vorlagen.count
   end

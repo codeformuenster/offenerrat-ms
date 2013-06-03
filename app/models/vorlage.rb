@@ -10,6 +10,8 @@ class Vorlage < ActiveRecord::Base
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
 
+  include PgSearch
+
   def base_url
     Offenerrat::Application::BASE_URL
   end
