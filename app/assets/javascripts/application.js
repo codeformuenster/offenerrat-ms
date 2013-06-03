@@ -20,3 +20,4 @@
 //= flat-ui/bootstrap-tooltip
 //= flat-ui/jquery.placeholder
 //= flat-ui/application
+//= require jquery-minicolors

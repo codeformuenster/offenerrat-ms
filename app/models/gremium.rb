@@ -5,7 +5,8 @@ class Gremium < ActiveRecord::Base
   has_many :sitzung
   has_many :vorlagen, through: :sitzung, source: :vorlagen
   has_one :subject
-
+  
+  attr_accessible :color, :title, :detail_url
   def vorlagen_count
     self.vorlagen.count
   end
