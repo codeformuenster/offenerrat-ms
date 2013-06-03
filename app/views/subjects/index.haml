@@ -3,7 +3,9 @@
     %h1 Themen
 
     - @subjects.each do |subject|
-      %h4=subject.title
+      %h4
+        %span=subject.title
+        = link_to image_tag('rss.png'), subject_path(subject.id,format: :atom)
       %dl
         %dt Vorlagen
         - subject.vorlagen.letzte.limit(5).each do |vorlage|
