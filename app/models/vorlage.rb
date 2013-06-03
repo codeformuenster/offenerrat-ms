@@ -21,12 +21,24 @@ class Vorlage < ActiveRecord::Base
     title
   end
 
+  def decission
+    self.sitzung.where("typ LIKE '%Entscheidung%'").first
+  end
+
   def typ_for_gremium(gremium)
     self.sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
   end
 
   def gremien_list
     self.gremium.map(&:to_s).join(', ')
+  end
+
+  def gremien_path
+    if self.decission
+      self.gremium.where('gremium.id <> ?',self.decission.gremium.id)
+    else
+      self.gremium
+    end
   end
 
   def to_s
