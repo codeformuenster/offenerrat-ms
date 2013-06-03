@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526063614) do
+ActiveRecord::Schema.define(:version => 20130531163625) do
 
   create_table "gremium", :force => true do |t|
     t.string "title"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20130526063614) do
   create_table "gremium_vorlage", :id => false, :force => true do |t|
     t.integer "gremium_id"
     t.integer "vorlage_id"
+  end
+
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "sitzung", :force => true do |t|
@@ -56,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130526063614) do
     t.string   "name"
     t.string   "zustaendig"
     t.text     "long_title"
+    t.datetime "datum"
   end
 
   create_table "vorlagen", :id => false, :force => true do |t|
