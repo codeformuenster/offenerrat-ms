@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20130603091246) do
     t.integer "vorlage_id"
   end
 
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "sitzung", :force => true do |t|
     t.datetime "datum"
     t.string   "stadt_id"
@@ -91,6 +99,13 @@ ActiveRecord::Schema.define(:version => 20130603091246) do
     t.string   "zustaendig"
     t.text     "long_title"
     t.datetime "datum"
+  end
+
+  create_table "vorlagen", :id => false, :force => true do |t|
+    t.integer "id",       :null => false
+    t.text    "titel"
+    t.text    "url"
+    t.integer "stadt_id"
   end
 
 end
