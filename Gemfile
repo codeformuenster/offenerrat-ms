@@ -16,6 +16,12 @@ gem 'newrelic_rpm'
 gem 'ransack' # MIT
 gem 'pg_search'
 
+
+gem 'activeadmin'
+
+gem 'twitter-bootstrap-rails'
+gem 'jquery-minicolors-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

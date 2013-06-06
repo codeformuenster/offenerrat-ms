@@ -8,4 +8,11 @@
 .row-fluid
   .span12
     %h3 Beteiligte Gremien
-    = render partial: "gremium/list", locals: { gremien: @vorlage.gremium }
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th Name
+          %th nächste Sitzung
+      %tbody
+        = render partial: "gremium/table_short_list", locals: { gremien: @vorlage.gremium }

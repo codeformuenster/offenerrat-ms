@@ -1,0 +1,4 @@
+- gremien.each do |gremium|
+  %tr
+    %td= render partial: "gremium/color", locals: { color: gremium.color } if gremium.color
+    %td=link_to "#{gremium.title}", gremium

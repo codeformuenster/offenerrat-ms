@@ -2,25 +2,5 @@
   %h1
     %span Vorlagen
     = link_to image_tag('rss.png'), vorlage_index_path(:rss)
-  - @vorlagen.each_slice(3) do |vorlagen_slice|
-    .row-fluid
-      - vorlagen_slice.each do |vorlage|
-        .span4
-          .tile
-            %h4.tile-title=vorlage.title
-            %span=vorlage.datum.strftime("%d.%m.%Y") if vorlage.datum
-            %h5="Zuständig: #{vorlage.zustaendig}"
-            - if vorlage.sitzung.kommende.count > 0
-              %h6="Nächste Beratungen (#{vorlage.sitzung.kommende.count}):"
-              = render partial: "sitzung/list_details", locals: { sitzungen: vorlage.sitzung.kommende, klass:"kommende" }
-            - if vorlage.sitzung.ohne_termin.count > 0
-              %h6
-                ="Noch Ohne Termin: (#{vorlage.sitzung.ohne_termin.count})"
-                %a.closed
-                  %span.fui-plus-16
-                = render partial: "sitzung/list_details", locals: { sitzungen: vorlage.sitzung.ohne_termin, klass:"ohne_termin" }
-            - if vorlage.sitzung.abgelaufende.count > 0
-              %h6
-                ="Abgelaufende: (#{vorlage.sitzung.abgelaufende.count})"
-                = render partial: "sitzung/list_details", locals: { sitzungen: vorlage.sitzung.abgelaufende, klass:"abgelaufende" }
-            =link_to "Detail", vorlage, class: "btn btn-info btn-large btn-block detail_link"
+  %table.table.table-striped
+    = render partial: "vorlage/table_list", locals: { vorlagen: @vorlagen, gremium: nil, show_gremien: true }

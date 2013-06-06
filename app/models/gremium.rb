@@ -7,6 +7,8 @@ class Gremium < ActiveRecord::Base
   has_one :subject
 
   include PgSearch
+  attr_accessible :color, :title, :detail_url
+
   def vorlagen_count
     self.vorlagen.count
   end

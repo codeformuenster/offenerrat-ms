@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= flat-ui/jquery.dropkick-1.0.0
-//= flat-ui/custom_checkbox_and_radio
-//= flat-ui/custom_radio
-//= flat-ui/jquery.tagsinput
-//= flat-ui/bootstrap-tooltip
-//= flat-ui/jquery.placeholder
-//= flat-ui/application
+//= require flat-ui/jquery.dropkick-1.0.0
+//= require flat-ui/custom_checkbox_and_radio
+//= require flat-ui/custom_radio
+//= require flat-ui/jquery.tagsinput
+//= require flat-ui/jquery.placeholder
+//= require twitter/bootstrap
+//= require pages

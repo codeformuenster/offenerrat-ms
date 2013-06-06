@@ -31,3 +31,16 @@
   height: 16px;
   text-decoration:none;
 }
+
+#vorlagen ul li {
+  float: left;
+  list-style: none;
+  padding: 0 2px 2px 0;
+}
+#vorlagen ul li a {
+  text-decoration: none;
+  width: 15px;
+  height: 100%;
+  display: block;
+  border: 1px solid #cecece;
+}

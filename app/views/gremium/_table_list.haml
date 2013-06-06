@@ -1,6 +1,6 @@
 - gremien.each do |gremium|
   %tr
-    %td
+    %td= render partial: "gremium/color", locals: { color: gremium.color } if gremium.color
     %td=link_to "#{gremium.title}", gremium
     %td= "#{gremium.vorlagen_count}"
     %td= gremium.next_sitzung.formatted_datum if gremium.next_sitzung
