@@ -6,3 +6,6 @@
 = javascript_include_tag "application"
 = csrf_meta_tags
 = auto_discovery_link_tag :rss, vorlage_index_path(:rss)
+= auto_discovery_link_tag :rss, sitzung_index_path(:rss)
+= auto_discovery_link_tag :atom, vorlage_index_path(:atom)
+= auto_discovery_link_tag :atom, sitzung_index_path(:atom)
