@@ -5,10 +5,6 @@
     %td
       %ul
         - if vorlage.gremien_path || vorlage.decission
-          - if vorlage.decission
-            %li
-              %a.popovers{style: "background:#{vorlage.decission.gremium.color};width:10px;height:100%;display:block;",'data-toggle' => "tooltip",title: "#{vorlage.decission.gremium.title}", "data-content" => "Entscheidung: ","data-placement" => "left"} &nbsp;
+          %li= render partial: "vorlage/link", locals: { color: vorlage.decission_color, title: vorlage.decission.gremium.title, content: vorlage.decission_content } if vorlage.decission
           - vorlage.gremien_path.each do |gremium|
-            - if gremium
-              %li
-                %a.popovers{style: "background:#{gremium.color};width:10px;height:100%;display:block;",'data-toggle' => "tooltip",title: "#{gremium.title}", "data-content" => "#{vorlage.typ_for_gremium(gremium)}","data-placement" => "left"} &nbsp;
+            %li= render partial: "vorlage/link", locals: { color: gremium.color, title: gremium.title, content: vorlage.gremium_content(gremium) } if gremium

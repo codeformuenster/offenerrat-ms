@@ -25,8 +25,33 @@ class Vorlage < ActiveRecord::Base
     self.sitzung.where("typ LIKE '%Entscheidung%'").first
   end
 
+  def decission_title
+    self.decission.gremium.title
+  end
+  def decission_color
+    self.decission.gremium.color
+  end
+  def decission_content
+    if sitzung = sitzung_for_gremium(decission.gremium)
+      "Entscheidung: #{sitzung.formatted_datum}"
+    else
+      "Entscheidung"
+    end
+  end
+
   def typ_for_gremium(gremium)
     self.sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
+  end
+
+  def sitzung_for_gremium(gremium)
+    self.sitzung.where(gremium_id: gremium).first
+  end
+  def gremium_content(gremium)
+    if sitzung = sitzung_for_gremium(gremium)
+      "#{typ_for_gremium(gremium)}: #{sitzung.formatted_datum}"
+    else
+      typ_for_gremium(gremium)
+    end
   end
 
   def gremien_list
@@ -35,9 +60,9 @@ class Vorlage < ActiveRecord::Base
 
   def gremien_path
     if self.decission
-      self.gremium.where('gremium.id <> ?',self.decission.gremium.id)
+      self.gremium.where('gremium.id <> ?',self.decission.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
     else
-      self.gremium
+      self.gremium.includes(:sitzung).order('sitzung.datum DESC')
     end
   end
 

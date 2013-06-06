@@ -1,7 +1,7 @@
 .row-fluid
   .span7
     .row-fluid
-      .span12.vorlagen
+      .span12#vorlagen
         %h5 neueste Vorlagen
         %table.table.table-striped
           = render partial: "vorlage/table_list", locals: { vorlagen: @vorlagen, gremium: nil, show_gremien: true }
