@@ -13,6 +13,7 @@ gem 'haml'
 gem 'newrelic_rpm'
 
 gem 'activeadmin'
+gem 'twitter-bootstrap-rails'
 gem 'jquery-minicolors-rails'
 # Gems used only for assets and not required
 # in production environments by default.

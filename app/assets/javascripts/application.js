@@ -16,7 +16,6 @@
 //= require flat-ui/custom_checkbox_and_radio
 //= require flat-ui/custom_radio
 //= require flat-ui/jquery.tagsinput
-//= require flat-ui/bootstrap-tooltip
-//= require flat-ui/bootstrap-popover
 //= require flat-ui/jquery.placeholder
-//= require_tree .
+//= require twitter/bootstrap
+//= require pages
