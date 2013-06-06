@@ -7,7 +7,7 @@
           %a{href: "#{@sitzung.base_url}#{@sitzung.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
   .row-fluid
     .span4
-      %table.table.table-condensed
+      %table.table.table-condensed{style: "border-left: 5px solid #{@sitzung.gremium.color}"}
         %tr
           %td=@sitzung.formatted_datum
         %tr

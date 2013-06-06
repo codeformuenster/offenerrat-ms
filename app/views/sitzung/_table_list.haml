@@ -1,7 +1,8 @@
 - sitzungen.each do |sitzung|
   - if sitzung.datum
     %tr
-      %td=link_to sitzung.gremium.title, sitzung.gremium
+      %td= render partial: "gremium/link", locals: { color: sitzung.gremium.color, title: sitzung.gremium.title, content: "", placement: "right"} if sitzung.gremium
       %td=link_to sitzung.intelligent_datum, sitzung if sitzung.datum
       %td
       %td= "#{sitzung.raum}" if sitzung.raum
+      %td= sitzung.gremium.title if sitzung.gremium
