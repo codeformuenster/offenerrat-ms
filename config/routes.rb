@@ -25,7 +25,8 @@ Offenerrat::Application.routes.draw do
   match "/sitzungen" => 'sitzung#index'
 
   match "/search" => 'search#index'
-  match "impressum" => 'pages#impressum'
+  match "/impressum" => 'pages#impressum'
+  match "/whatsnew" => 'pages#whatsnew'
 
   # Sample resource route with options:
   #   resources :products do

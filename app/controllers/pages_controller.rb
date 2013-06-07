@@ -11,4 +11,8 @@ class PagesController < ApplicationController
   def impressum
 
   end
+
+  def whatsnew
+
+  end
 end
