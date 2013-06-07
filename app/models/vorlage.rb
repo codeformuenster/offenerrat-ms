@@ -11,6 +11,7 @@ class Vorlage < ActiveRecord::Base
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
 
   include PgSearch
+  multisearchable :against => [:title, :name]
 
   def base_url
     Offenerrat::Application::BASE_URL
@@ -75,4 +76,9 @@ class Vorlage < ActiveRecord::Base
   def description
     "Beteiligte Gremien: #{gremien_list}"
   end
+
+  def self.resource_index_attributes
+    [:title, :name]
+  end
+
 end
