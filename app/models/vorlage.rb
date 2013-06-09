@@ -7,6 +7,7 @@ class Vorlage < ActiveRecord::Base
   has_many :sitzung, through: :sitzung_vorlage
   has_many :sitzung_vorlage
   has_many :subjects, through: :gremium
+  has_many :documents
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
 
