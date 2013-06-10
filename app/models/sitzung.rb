@@ -50,6 +50,11 @@ class Sitzung < ActiveRecord::Base
     subjects.uniq unless gremium.subject
   end
 
+  def typ_for_vorlage(vorlage)
+    self.sitzung_vorlage.joins(:vorlage).where(vorlage_id: vorlage).first.typ
+  end
+
+
   def base_url
     Offenerrat::Application::BASE_URL
   end

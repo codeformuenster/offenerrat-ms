@@ -18,5 +18,13 @@
         %tr
           %th
           %th Name
+          %th Sitzung
+          %th Art
       %tbody
-        = render partial: "gremium/table_short_list", locals: { gremien: @vorlage.gremium }
+        - @vorlage.gremien_sitzungen.each do |sitzung|
+          %tr
+            %td= render partial: "gremium/color", locals: { color: sitzung.gremium.color } if sitzung.gremium.color
+            %td=link_to "#{sitzung.gremium.title}", sitzung.gremium
+            %td= link_to sitzung.formatted_datum, sitzung
+            %td= @vorlage.typ_for_sitzung(sitzung)
+

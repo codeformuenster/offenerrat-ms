@@ -43,6 +43,15 @@ class Vorlage < ActiveRecord::Base
     end
   end
 
+  def gremien_sitzungen
+    self.sitzung.includes(:gremium).order("sitzung.datum DESC")
+  end
+
+
+  def typ_for_sitzung(sitzung)
+    self.sitzung_vorlage.joins(:sitzung).where(sitzung_id: sitzung).first.typ
+  end
+
   def typ_for_gremium(gremium)
     self.sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
   end
