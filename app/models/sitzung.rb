@@ -66,6 +66,10 @@ class Sitzung < ActiveRecord::Base
     self.sitzung_vorlage.joins(:vorlage).where(vorlage_id: vorlage).first.typ
   end
 
+  def vorlagen_for_subject(subject)
+    self.vorlagen.joins(:subjects).where("subjects.id = ?",subject.id).all
+  end
+
 
   def base_url
     Offenerrat::Application::BASE_URL

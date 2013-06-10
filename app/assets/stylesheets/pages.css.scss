@@ -10,6 +10,11 @@ dl {
   border: 1px solid #eee;
   padding: 5px 0;
 }
+dl dd p {
+  margin: 5px;
+  padding: 0 0 5px 0;
+}
+
 dl.sitzungen ul {
   margin: 0 0 10px 10px;
 }
