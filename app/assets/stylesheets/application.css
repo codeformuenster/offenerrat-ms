@@ -15,6 +15,7 @@
  *= require sitzung
  *= require gremium
  *= require bootstrap
+*= require bootstrap-responsive.min
  *= require flat-ui
  */
 
