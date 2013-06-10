@@ -50,6 +50,18 @@ class Sitzung < ActiveRecord::Base
     subjects.uniq unless gremium.subject
   end
 
+  def entscheidungen
+    self.sitzung_vorlage.entscheidungen.all
+  end
+
+  def berichte
+    self.sitzung_vorlage.berichte.all
+  end
+
+  def antraege
+    self.sitzung_vorlage.antraege.all
+  end
+
   def typ_for_vorlage(vorlage)
     self.sitzung_vorlage.joins(:vorlage).where(vorlage_id: vorlage).first.typ
   end
