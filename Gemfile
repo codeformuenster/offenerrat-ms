@@ -16,6 +16,7 @@ gem 'newrelic_rpm'
 gem 'ransack' # MIT
 gem 'pg_search'
 
+gem 'meta-tags', require: 'meta_tags'
 
 gem 'activeadmin'
 
