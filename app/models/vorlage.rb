@@ -24,11 +24,19 @@ class Vorlage < ActiveRecord::Base
   def short_title
     title
   end
+  def formatted_datum
+    datum.strftime('%d.%m.%Y')
+  end
 
   def decission
     self.sitzung.where("typ LIKE '%Entscheidung%'").first
   end
-
+  def entscheidungs_sitzung
+    self.sitzung_vorlage.find_by_sitzung_id(decission)
+  end
+  def beschluss
+    entscheidungs_sitzung.decission.decission_category.title if entscheidungs_sitzung && entscheidungs_sitzung.decission
+  end
   def decission_title
     self.decission.gremium.title
   end
@@ -83,6 +91,13 @@ class Vorlage < ActiveRecord::Base
 
   def to_s
     "#{name}: #{title}"
+  end
+  def details
+    if beschluss
+      "#{formatted_datum}, #{beschluss}"
+    else
+      "#{formatted_datum}"
+    end
   end
 
   def description
