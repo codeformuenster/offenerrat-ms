@@ -27,5 +27,5 @@
             %td=link_to "#{sitzung.gremium.title}", sitzung.gremium
             %td= link_to sitzung.formatted_datum, sitzung
             %td= @vorlage.typ_for_sitzung(sitzung)
-            %td= @vorlage.entscheidung_for_sitzung(sitzung).title
+            %td= @vorlage.entscheidung_for_sitzung(sitzung).title if @vorlage.entscheidung_for_sitzung(sitzung)
 
