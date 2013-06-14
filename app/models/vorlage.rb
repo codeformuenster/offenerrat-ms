@@ -4,7 +4,7 @@ class Vorlage < ActiveRecord::Base
 
 
   has_many :gremium, through: :sitzung
-  has_many :sitzung, through: :sitzung_vorlage
+  has_many :sitzung, through: :sitzung_vorlage, include: :sitzung_vorlage
   has_many :sitzung_vorlage
   has_many :subjects, through: :gremium
   has_many :documents
@@ -47,9 +47,11 @@ class Vorlage < ActiveRecord::Base
     self.sitzung.includes(:gremium).order("sitzung.datum DESC")
   end
 
-
   def typ_for_sitzung(sitzung)
-    self.sitzung_vorlage.joins(:sitzung).where(sitzung_id: sitzung).first.typ
+    self.sitzung_vorlage.find_by_sitzung_id(sitzung).typ
+  end
+  def entscheidung_for_sitzung(sitzung)
+    self.sitzung_vorlage.find_by_sitzung_id(sitzung).decission
   end
 
   def typ_for_gremium(gremium)
