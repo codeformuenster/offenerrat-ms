@@ -1,0 +1,23 @@
+#search-result-page
+  - unless @results.blank?
+    - @results.each do |resource_class, resources|
+
+      .search-result-page-content-wrapper
+        %section.search-result-page-content
+          .search-result-header
+            %span.search-result-icon{class: "#{listing_title(resource_class).downcase}"}
+            .search-result-heading
+              = "#{resources.length} #{listing_title(resource_class, resources.length)}"
+          %table.search-results-list.table.table-striped
+            %thead
+              %tr
+                - resource_class.resource_index_attributes.each do |attr|
+                  %th= resource_class.human_attribute_name attr
+            %tbody
+              = render partial: "search/#{listing_title(resource_class).downcase}", collection: resources, locals: { resource_class: resource_class }
+  - else
+    .search-result-page-content-wrapper.no-search-results
+      %section.search-result-page-content.no-search-results
+        .search-result-header.no-search-results
+          .search-result-heading.no-search-results
+            =t(".no_results")

@@ -6,6 +6,8 @@
       %li= link_to "Gremien", gremium_index_path
       %li= link_to "Vorlagen", vorlage_index_path
       %li= link_to "Themen", subjects_path
-    = form_tag search_path, method: :get do
-      = text_field_tag :global_query, @global_query, placeholder: "Schnellsuche", id: 'searchfield-input'
-      = submit_tag "Suche", class: "btn", id: "fast-search-button"
+      %li
+        = form_tag search_path, method: :get do
+          = text_field_tag :global_query, @global_query, placeholder: "Schnellsuche", id: 'searchfield-input'
+          = submit_tag "Suche", class: "btn", id: "fast-search-button"
+

@@ -1,12 +1,17 @@
-.row-fluid
+.row-fluid#subjects
   .span12
     %h1 Themen
-
-    - @subjects.each do |subject|
-      %h4
-        %span=subject.title
-        = link_to image_tag('rss.png'), subject_path(subject.id,format: :atom)
-      %dl
-        %dt Vorlagen
-        - subject.vorlagen.letzte.limit(5).each do |vorlage|
-          %dd=link_to "#{vorlage.name}: #{vorlage.title}", vorlage
+    .row-fluid
+      - @subjects.each_slice((@subjects.count/2).round+1) do |subject_slice|
+        .span6
+          - subject_slice.each do |subject|
+            - if subject.vorlagen.letzte.count > 0
+              %h4
+                %span=subject.title
+                = link_to image_tag('rss.png'), subject_path(subject.id,format: :atom)
+              %dl
+                %dt Vorlagen
+                - subject.vorlagen.letzte.limit(5).each do |vorlage|
+                  %dd
+                    =link_to vorlage,vorlage
+                    %span=vorlage.details

@@ -1,0 +1,14 @@
+#document.row-fluid
+  .span-12
+    %h1
+      %span=@document.title
+
+    %p= link_to "PDF der Stadt", @document.url
+
+
+#document.row-fluid
+  .span-12
+    %h2 Inhalt
+
+= preserve(@document.html)
+

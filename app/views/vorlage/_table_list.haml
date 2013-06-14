@@ -1,8 +1,10 @@
 - vorlagen.each do |vorlage|
   %tr
     %td=link_to "#{vorlage.name}", vorlage
-    %td="#{vorlage.title}"
-    %td=vorlage.gremien_list
-    - if gremium
-      %td="#{vorlage.typ_for_gremium(gremium)}"
-
+    %td=link_to "#{vorlage.title}", vorlage
+    %td
+      %ul
+        - if vorlage.gremien_path || vorlage.decission
+          %li= render partial: "gremium/link", locals: { color: vorlage.decission_color, title: vorlage.decission.gremium.title, content: vorlage.decission_content, placement: "left" } if vorlage.decission
+          - vorlage.gremien_path.each do |gremium|
+            %li= render partial: "gremium/link", locals: { color: gremium.color, title: gremium.title, content: vorlage.gremium_content(gremium), placement: "left" } if gremium

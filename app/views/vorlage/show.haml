@@ -4,8 +4,28 @@
       %span=@vorlage.name
       %a{href: "#{@vorlage.base_url}#{@vorlage.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
     %h2=@vorlage.title
-    %p=@vorlage.datum.strftime("%d.%m.%Y")
+.row-fluid
+  .span4
+    %table.table.table-condensed
+      %tr
+        %td=@vorlage.datum.strftime("%d.%m.%Y")
+      = render partial: "documents/short_table", locals: { documents: @vorlage.documents }
 .row-fluid
   .span12
     %h3 Beteiligte Gremien
-    = render partial: "gremium/list", locals: { gremien: @vorlage.gremium }
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th Name
+          %th Sitzung
+          %th Art
+      %tbody
+        - @vorlage.gremien_sitzungen.each do |sitzung|
+          %tr
+            %td= render partial: "gremium/color", locals: { color: sitzung.gremium.color } if sitzung.gremium.color
+            %td=link_to "#{sitzung.gremium.title}", sitzung.gremium
+            %td= link_to sitzung.formatted_datum, sitzung
+            %td= @vorlage.typ_for_sitzung(sitzung)
+            %td= @vorlage.entscheidung_for_sitzung(sitzung).title if @vorlage.entscheidung_for_sitzung(sitzung)
+

@@ -1,5 +1,11 @@
+# encoding: UTF-8
 class PagesController < ApplicationController
   def index
+    set_default_meta_tags
+    set_open_graph
+    set_twitter_card
+
+
     @vorlagen = Vorlage.letzte.limit(5)
     @sitzungen_heute = Sitzung.heute
     @sitzungen_morgen = Sitzung.morgen
@@ -9,6 +15,17 @@ class PagesController < ApplicationController
   end
 
   def impressum
+    set_default_meta_tags
+    @page_title = "#{page_title} | Impressum"
+    set_open_graph
+    set_twitter_card
 
+  end
+
+  def whatsnew
+    set_default_meta_tags
+    @page_title = "#{page_title} | What's new"
+    set_open_graph
+    set_twitter_card
   end
 end

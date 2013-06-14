@@ -9,8 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require vorlage
+*= require pages
+ *= require subjects
+ *= require sitzung
+ *= require gremium
  *= require bootstrap
+*= require bootstrap-responsive.min
  *= require flat-ui
  */
 
