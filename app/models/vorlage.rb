@@ -10,6 +10,8 @@ class Vorlage < ActiveRecord::Base
   has_many :documents
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
+  scope :letzter_monat , lambda { where(datum: 1.month.ago.beginning_of_day..Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
+  scope :beschlossene, lambda { joins(:sitzung_vorlage).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).uniq  }
 
   include PgSearch
   multisearchable :against => [:title, :name]
@@ -29,7 +31,7 @@ class Vorlage < ActiveRecord::Base
   end
 
   def decission
-    self.sitzung.where("typ LIKE '%Entscheidung%'").first
+    self.sitzung.zustaendig.first
   end
   def entscheidungs_sitzung
     self.sitzung_vorlage.find_by_sitzung_id(decission)

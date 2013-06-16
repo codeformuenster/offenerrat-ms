@@ -11,7 +11,7 @@ class Sitzung < ActiveRecord::Base
   scope :letzter_monat, lambda { where(datum: 1.month.ago..Time.zone.now.beginning_of_day ).order("datum DESC") }
   scope :abgelaufende, lambda { where("datum < ?", Time.zone.now.beginning_of_day ).order("datum DESC") }
   scope :ohne_termin, lambda { where("datum IS NULL or CAST(datum as text) = ''") }
-  scope :zustaendig, lambda { where("typ LIKE %Entscheidung%") }
+  scope :zustaendig, lambda { where("typ LIKE '%Entscheidung%'") }
   scope :feed, lambda { where("datum < ?", Time.zone.now.tomorrow.end_of_day ).order("datum DESC") }
 
   belongs_to :gremium

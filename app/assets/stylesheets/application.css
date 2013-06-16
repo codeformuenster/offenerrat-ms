@@ -14,6 +14,7 @@
  *= require subjects
  *= require sitzung
  *= require gremium
+ *= require navigation
  *= require bootstrap
 *= require bootstrap-responsive.min
  *= require flat-ui

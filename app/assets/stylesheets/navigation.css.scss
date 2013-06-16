@@ -1,0 +1,25 @@
+.navbar-inner {
+    background:#fafafa;
+}
+.navbar-bottom {
+  text-align:center;
+}
+.navbar-bottom ul {
+  list-style: none;
+  text-align:left;
+  background:#fafafa;
+  display:inline-block;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  *display:inline;/* For IE7*/
+  *zoom:1;/* For IE7*/
+}
+.navbar-bottom ul li{
+  float: left;
+  padding: 5px 10px;
+  font-size: 15px;
+}

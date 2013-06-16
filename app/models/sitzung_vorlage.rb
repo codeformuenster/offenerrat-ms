@@ -7,5 +7,4 @@ class SitzungVorlage < ActiveRecord::Base
   scope :entscheidungen, lambda { where("typ LIKE '%Entscheidung%'") }
   scope :berichte, lambda { where("typ LIKE '%Bericht%'") }
   scope :antraege, lambda { where("typ LIKE '%Antrag%'") }
-
 end

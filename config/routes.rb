@@ -15,7 +15,12 @@ Offenerrat::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  resources :vorlage, only: [:index,:show]
+  resources :vorlage, only: [:index,:show] do
+    collection do
+      get 'all'
+      get 'beschlossene'
+    end
+  end
   resources :gremium, only: [:index,:show]
   resources :sitzung, only: [:index,:show]
   resources :subjects, only: [:index,:show]
@@ -23,7 +28,10 @@ Offenerrat::Application.routes.draw do
 
   match "/gremien" => 'gremium#index'
   match "/vorlagen" => 'vorlage#index'
+  match "/vorlagen/alle" => 'vorlage#all'
+
   match "/sitzungen" => 'sitzung#index'
+
 
   match "/search" => 'search#index'
   match "/impressum" => 'pages#impressum'
