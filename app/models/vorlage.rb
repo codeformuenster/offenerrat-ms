@@ -11,7 +11,8 @@ class Vorlage < ActiveRecord::Base
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
   scope :letzter_monat , lambda { where(datum: 1.month.ago.beginning_of_day..Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
-  scope :beschlossene, lambda { joins(:sitzung_vorlage).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).uniq  }
+  scope :beschlossene, lambda { joins(:sitzung_vorlage).includes(:sitzung).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).order("sitzung.datum DESC").uniq  }
+  scope :in_beratung, lambda { includes(:sitzung).where("sitzung.datum > ?",Time.zone.now.beginning_of_day).order("sitzung.datum ASC").uniq }
 
   include PgSearch
   multisearchable :against => [:title, :name]
@@ -30,24 +31,35 @@ class Vorlage < ActiveRecord::Base
     datum.strftime('%d.%m.%Y')
   end
 
-  def decission
+  def decission_session
     self.sitzung.zustaendig.first
   end
   def entscheidungs_sitzung
-    self.sitzung_vorlage.find_by_sitzung_id(decission)
+    decission_session.sitzung_vorlage.find_by_vorlage_id(self.id) if decission_session
+  end
+  def entscheidung
+    decission = sitzung_vorlage.first.decission
+    if decission
+      unless decission.decission_category == 1
+        decission.title
+      else
+        self.sitzung_vorlage.first.decission.decission_category.title
+      end
+    end
   end
   def beschluss
     entscheidungs_sitzung.decission.decission_category.title if entscheidungs_sitzung && entscheidungs_sitzung.decission
   end
-  def decission_title
-    self.decission.gremium.title
+  def decission_session_title
+    self.decission_session.gremium.title
   end
-  def decission_color
-    self.decission.gremium.color
+  def decission_session_color
+    self.decission_session.gremium.color
   end
   def decission_content
-    if sitzung = sitzung_for_gremium(decission.gremium)
-      "Entscheidung: #{sitzung.formatted_datum}"
+    if sitzung = sitzung_for_gremium(decission_session.gremium)
+      content = "Entscheidung: #{sitzung.formatted_datum}"
+      content += beschluss ? " #{beschluss}" : " #{entscheidung}"
     else
       "Entscheidung"
     end
@@ -73,7 +85,8 @@ class Vorlage < ActiveRecord::Base
   end
   def gremium_content(gremium)
     if sitzung = sitzung_for_gremium(gremium)
-      "#{typ_for_gremium(gremium)}: #{sitzung.formatted_datum}"
+      content = "#{typ_for_gremium(gremium)}: #{sitzung.formatted_datum}"
+      content += " #{entscheidung}" if entscheidung
     else
       typ_for_gremium(gremium)
     end
@@ -84,8 +97,8 @@ class Vorlage < ActiveRecord::Base
   end
 
   def gremien_path
-    if self.decission
-      self.gremium.where('gremium.id <> ?',self.decission.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
+    if self.decission_session
+      self.gremium.where('gremium.id <> ?',self.decission_session.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
     else
       self.gremium.includes(:sitzung).order('sitzung.datum DESC')
     end
@@ -104,6 +117,19 @@ class Vorlage < ActiveRecord::Base
 
   def description
     "Beteiligte Gremien: #{gremien_list}"
+  end
+
+  def next_step
+    if sitzung.last.datum < Time.now
+      if (decission_session && !beschluss) || !entscheidung
+        "keine Entscheidung bekannt"
+      else
+        beschluss ? "#{beschluss} (#{decission_session.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"
+      end
+    else
+      sitzung = sitzung_vorlage.next_sitzung.last.sitzung
+      "in Beratung: #{sitzung.formatted_datum} #{sitzung.gremium.title}"
+    end
   end
 
   def self.resource_index_attributes

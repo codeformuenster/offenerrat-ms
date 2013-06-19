@@ -1,10 +1,13 @@
 - vorlagen.each do |vorlage|
   %tr
     %td=link_to "#{vorlage.name}", vorlage
-    %td=link_to "#{vorlage.title}", vorlage
+    %td
+      =link_to "#{vorlage.title}", vorlage
+      %br
+      %span=vorlage.next_step
     %td
       %ul
-        - if vorlage.gremien_path || vorlage.decission
-          %li= render partial: "gremium/link", locals: { color: vorlage.decission_color, title: vorlage.decission.gremium.title, content: vorlage.decission_content, placement: "left" } if vorlage.decission
+        - if vorlage.gremien_path || vorlage.decission_session
+          %li= render partial: "gremium/link", locals: { color: vorlage.decission_session_color, title: vorlage.decission_session.gremium.title, content: vorlage.decission_content, placement: "left" } if vorlage.decission_session
           - vorlage.gremien_path.each do |gremium|
             %li= render partial: "gremium/link", locals: { color: gremium.color, title: gremium.title, content: vorlage.gremium_content(gremium), placement: "left" } if gremium
