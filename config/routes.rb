@@ -19,6 +19,7 @@ Offenerrat::Application.routes.draw do
     collection do
       get 'all'
       get 'beschlossene'
+      get 'in_beratung'
     end
   end
   resources :gremium, only: [:index,:show]

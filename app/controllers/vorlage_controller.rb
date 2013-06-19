@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class VorlageController < ApplicationController
 
-  def index
+  def meta
     @page_title       = "#{page_title} | Vorlagen"
     @page_description = 'Aktuelle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
     @page_keywords    = "#{page_keywords}, Vorlage"
@@ -9,6 +9,10 @@ class VorlageController < ApplicationController
     set_open_graph
     set_twitter_card
 
+  end
+
+  def index
+    meta
     @vorlagen = Vorlage.letzter_monat
 
     respond_to do |format|
@@ -32,13 +36,8 @@ class VorlageController < ApplicationController
   end
 
   def all
-    @subnav = true
-    @page_title       = "#{page_title} | Vorlagen"
+    meta
     @page_description = 'Alle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
-    @page_keywords    = "#{page_keywords}, Vorlage"
-
-    set_open_graph
-    set_twitter_card
 
     @vorlagen = Vorlage.all
 
@@ -50,17 +49,17 @@ class VorlageController < ApplicationController
   end
 
   def beschlossene
-    @subnav = true
-
-    @subnav = true
+    meta
     @page_title       = "#{page_title} | Beschlossene Vorlagen"
     @page_description = 'Beschlossene Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
-    @page_keywords    = "#{page_keywords}, Vorlage"
-
-    set_open_graph
-    set_twitter_card
 
     @vorlagen = Vorlage.beschlossene
+  end
+  def in_beratung
+    meta
+    @page_title       = "#{page_title} | Vorlagen in Beratung"
+
+    @vorlagen = Vorlage.in_beratung
   end
 
 end
