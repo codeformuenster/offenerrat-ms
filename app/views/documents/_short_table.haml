@@ -1,3 +1,7 @@
-- documents.each do |document|
-  %tr
-    %td=link_to document.title, document
+%tr
+  %th Dokumente:
+  %td
+    %table.table.table-borderless.table-condensed.table-inner
+      - documents.each do |document|
+        %tr
+          %td=link_to document.title, document

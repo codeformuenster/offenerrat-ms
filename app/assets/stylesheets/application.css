@@ -25,3 +25,8 @@
   padding: 20px;
   color: #000;
 }
+
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}

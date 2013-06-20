@@ -32,3 +32,16 @@ dl.sitzungen ul li {
   display: block;
   border: 1px solid #cecece;
 }
+.table.table-borderless td,
+.table.table-borderless th {
+    border: none;
+}
+.table.table-inner td{
+  padding: 4px 5px 4px 0px;
+}
+.table.table-inner td:first-child {
+  padding: 0px 5px 4px 0px;
+}
+.table.table-inner {
+  margin-bottom: 0px;
+}

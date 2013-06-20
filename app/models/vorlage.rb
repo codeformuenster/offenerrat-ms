@@ -31,6 +31,34 @@ class Vorlage < ActiveRecord::Base
     datum.strftime('%d.%m.%Y')
   end
 
+  def ratsvorlage?
+    decission_session.gremium.title == "Rat"
+  end
+
+  def verantwortlich
+    decission_session.gremium if decission_session
+  end
+
+  def in_beratung?
+    sitzung.order(:datum).last.datum < Time.now
+  end
+
+  def entscheidung_getroffen?
+    (decission_session && beschluss) || entscheidung
+  end
+
+  def aktueller_vorgang
+    if in_beratung?
+      unless entscheidung_getroffen?
+        "noch keine Entscheidung bekannt"
+      else
+        beschluss ? beschluss : entscheidung
+      end
+    else
+      "in Beratung"
+    end
+  end
+
   def decission_session
     self.sitzung.zustaendig.first
   end
@@ -120,8 +148,8 @@ class Vorlage < ActiveRecord::Base
   end
 
   def next_step
-    if sitzung.last.datum < Time.now
-      if (decission_session && !beschluss) || !entscheidung
+    if in_beratung?
+      unless entscheidung_getroffen?
         "keine Entscheidung bekannt"
       else
         beschluss ? "#{beschluss} (#{decission_session.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"

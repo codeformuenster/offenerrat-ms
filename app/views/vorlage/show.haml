@@ -1,31 +1,60 @@
 #vorlage.row-fluid
   .span-12
-    %h1
+    %h1=@vorlage.title
+    %h4
       %span=@vorlage.name
       %a{href: "#{@vorlage.base_url}#{@vorlage.detail_url}", title: "im Ratsinformationssystem öffnen", target: "_blank", class: "fui-eye-16"}
-    %h2=@vorlage.title
 .row-fluid
-  .span4
-    %table.table.table-condensed
-      %tr
-        %td=@vorlage.datum.strftime("%d.%m.%Y")
-      = render partial: "documents/short_table", locals: { documents: @vorlage.documents }
+  .span10.offset1{style: "border-bottom:1px solid #eee;margin: 0 0 20px 0;"}
 .row-fluid
-  .span12
-    %h3 Beteiligte Gremien
-    %table.table.table-striped
-      %thead
-        %tr
-          %th
-          %th Name
-          %th Sitzung
-          %th Art
-      %tbody
-        - @vorlage.gremien_sitzungen.each do |sitzung|
-          %tr
-            %td= render partial: "gremium/color", locals: { color: sitzung.gremium.color } if sitzung.gremium.color
-            %td=link_to "#{sitzung.gremium.title}", sitzung.gremium
-            %td= link_to sitzung.formatted_datum, sitzung
-            %td= @vorlage.typ_for_sitzung(sitzung)
-            %td= @vorlage.entscheidung_for_sitzung(sitzung).title if @vorlage.entscheidung_for_sitzung(sitzung)
+  .span6
+    .row-fluid
+      .span12
+        %h3=@vorlage.aktueller_vorgang
 
+    .row-fluid
+      .span12
+        .row-fluid
+          .span12
+          - @vorlage.gremien_sitzungen.each do |sitzung|
+            .row-fluid
+              .span10
+                %h5=@vorlage.typ_for_sitzung(sitzung)
+              .span2
+                %h5=link_to sitzung.formatted_datum, sitzung
+            .row-fluid
+              .span12
+                %table.table{style: "border-left:5px solid #{sitzung.gremium.color}"}
+                  %tbody
+                    %tr
+                      %td{width: "20%"} Gremium:
+                      %td= link_to sitzung.gremium,sitzung.gremium
+                    - if @vorlage.entscheidung_for_sitzung(sitzung)
+                      %tr
+                        %td Beschluss:
+                        %td= @vorlage.entscheidung_for_sitzung(sitzung).title
+
+  .span5.offset1
+    .row-fluid
+      .span12
+        %table.table.table-borderless.table-condensed
+          %tr
+            %th{width:"15%"} Datum:
+            %td=@vorlage.datum.strftime("%d.%m.%Y")
+          - if @vorlage.entscheidungs_sitzung
+            %tr
+              %th Typ:
+              %td=@vorlage.entscheidungs_sitzung.typ
+          - if @vorlage.verantwortlich
+            %tr
+              %th Verantwortlich:
+              %td=link_to @vorlage.verantwortlich,@vorlage.verantwortlich
+          - if @vorlage.subjects.count > 0
+            %tr
+              %th Themen:
+              %td
+                %table.table.table-borderless.table-condensed.table-inner
+                  - @vorlage.subjects.each do |subject|
+                    %tr
+                      %td=link_to subject, subject
+          = render partial: "documents/short_table", locals: { documents: @vorlage.documents }
