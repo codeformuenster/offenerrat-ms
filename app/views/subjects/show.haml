@@ -1,0 +1,10 @@
+.row-fluid#subject
+  .span12
+    %h1
+      %span=@subject
+      = link_to image_tag('rss.png'), subject_path(@subject.id,format: :atom)
+
+.row-fluid#vorlagen
+  .span12
+    %table.table.table-striped
+      = render partial: "vorlage/table_list", locals: { vorlagen: @subject.vorlagen, gremium: nil, show_gremien: true }

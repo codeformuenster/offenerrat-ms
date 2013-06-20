@@ -4,10 +4,11 @@ class SubjectsController < ApplicationController
   end
 
   def show
+    @subject = Subject.find(params[:id])
     respond_to do |format|
        format.rss { render :layout => false }
        format.html
-       format.atom { @subject = Subject.find(params[:id]) }
+       format.atom { @subject }
     end
   end
 end

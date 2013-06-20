@@ -12,4 +12,8 @@ class Subject < ActiveRecord::Base
     self.vorlagen.pluck(:stadt_id)
   end
 
+  def to_s
+    title
+  end
+
 end
