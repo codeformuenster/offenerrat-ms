@@ -54,7 +54,7 @@
               %th Themen:
               %td
                 %table.table.table-borderless.table-condensed.table-inner
-                  - @vorlage.subjects.each do |subject|
+                  - @vorlage.subjects.uniq.each do |subject|
                     %tr
                       %td=link_to subject, subject
           = render partial: "documents/short_table", locals: { documents: @vorlage.documents }
