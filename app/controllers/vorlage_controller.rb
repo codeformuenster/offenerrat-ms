@@ -1,6 +1,11 @@
 # encoding: UTF-8
 class VorlageController < ApplicationController
 
+  has_scope :by_district
+  has_scope :by_subject
+  has_scope :by_typ
+  has_scope :by_gremium
+
   def meta
     @page_title       = "#{page_title} | Vorlagen"
     @page_description = 'Aktuelle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
@@ -13,7 +18,9 @@ class VorlageController < ApplicationController
 
   def index
     meta
-    @vorlagen = Vorlage.letzter_monat
+    @title = "Aktuelle Vorlagen"
+    @filter_path = vorlagen_path
+    @vorlagen = apply_scopes(Vorlage).letzter_monat
 
     respond_to do |format|
       format.html
@@ -38,13 +45,14 @@ class VorlageController < ApplicationController
   def all
     meta
     @page_description = 'Alle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
-
-    @vorlagen = Vorlage.all
+    @title = "Alle Vorlagen"
+    @filter_path = vorlage_path(:all)
+    @vorlagen = apply_scopes(Vorlage).all
 
     respond_to do |format|
-      format.html
-      format.rss { render :layout => false }
-      format.atom
+      format.html { render action: :index }
+      format.rss { render :layout => false, action: :index }
+      format.atom { render action: :index }
     end
   end
 
@@ -52,14 +60,27 @@ class VorlageController < ApplicationController
     meta
     @page_title       = "#{page_title} | Beschlossene Vorlagen"
     @page_description = 'Beschlossene Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
+    @title = "Beschlossene Vorlagen"
+    @filter_path = vorlage_path(:beschlossene)
+    @vorlagen = apply_scopes(Vorlage).beschlossene
 
-    @vorlagen = Vorlage.beschlossene
+    respond_to do |format|
+      format.html { render action: :index }
+      format.rss { render :layout => false, action: :index }
+      format.atom { render action: :index }
+    end
   end
   def in_beratung
     meta
     @page_title       = "#{page_title} | Vorlagen in Beratung"
-
-    @vorlagen = Vorlage.in_beratung
+    @title = "Vorlagen in Beratung"
+    @filter_path = vorlage_path(:in_beratung)
+    @vorlagen = apply_scopes(Vorlage).in_beratung
+    respond_to do |format|
+      format.html { render action: :index }
+      format.rss { render :layout => false, action: :index }
+      format.atom { render action: :index }
+    end
   end
 
 end

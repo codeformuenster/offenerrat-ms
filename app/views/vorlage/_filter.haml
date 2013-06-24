@@ -1,0 +1,16 @@
+.filter
+  %h4 Filter
+  = form_tag @filter_path, method: :get do
+    %ul
+      %li
+        = label_tag :by_gremium, "nach Gremium:"
+        = select_tag(:by_gremium, options_from_collection_for_select(Gremium.all, :id, :title),{ :prompt => 'Gremium auswählen' })
+
+      %li
+        = label_tag :by_district, "nach Thema:"
+        = select_tag(:by_subject, options_from_collection_for_select(Subject.all, :id, :title),{ :prompt => 'Thema auswählen' })
+      %li
+        = label_tag :by_district, "nach Bezirk:"
+        = select_tag(:by_district, options_from_collection_for_select(District.all, :id, :name),{ :prompt => 'Bezirk auswählen' })
+
+    = submit_tag "Filtern"

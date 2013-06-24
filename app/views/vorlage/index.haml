@@ -1,6 +1,7 @@
 #vorlagen
+  = render partial: "vorlage/filter"
   %h1
-    %span Aktuelle Vorlagen
-    = link_to image_tag('rss.png'), vorlage_index_path(:atom)
+    %span=@title
+    = link_to image_tag('rss.png'), vorlage_path(controller.action_name,:atom)
   %table.table.table-striped
     = render partial: "vorlage/table_list", locals: { vorlagen: @vorlagen, gremium: nil, show_gremien: true }

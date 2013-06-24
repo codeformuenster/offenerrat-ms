@@ -8,11 +8,17 @@ class Vorlage < ActiveRecord::Base
   has_many :sitzung_vorlage
   has_many :subjects, through: :gremium
   has_many :documents
+  has_many :districts, through: :gremium
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
   scope :letzter_monat , lambda { where(datum: 1.month.ago.beginning_of_day..Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
-  scope :beschlossene, lambda { joins(:sitzung_vorlage).includes(:sitzung).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).order("sitzung.datum DESC").uniq  }
-  scope :in_beratung, lambda { includes(:sitzung).where("sitzung.datum > ?",Time.zone.now.beginning_of_day).order("sitzung.datum ASC").uniq }
+  scope :beschlossene, lambda { joins(:sitzung_vorlage).joins(:sitzung).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).order("sitzung.datum DESC").group("vorlage.id, sitzung.datum") }
+  scope :in_beratung, lambda { joins(:sitzung).where("sitzung.datum > ?",Time.zone.now.beginning_of_day).order("sitzung.datum ASC").group("vorlage.id, sitzung.datum") }
+
+  scope :by_district, -> district { includes(:districts).where("districts.id = ?", district) }
+  scope :by_subject, -> subject { includes(:subjects).where("subjects.id = ?", subject) }
+  scope :by_gremium, -> gremium { joins(:gremium).where("gremium.id = ?", gremium) }
+  scope :by_type, -> type { joins(:sitzung_vorlage).where("sitzung_vorlage.typ = ?", type) }
 
   include PgSearch
   multisearchable :against => [:title, :name]
@@ -40,7 +46,7 @@ class Vorlage < ActiveRecord::Base
   end
 
   def in_beratung?
-    sitzung.order(:datum).last.datum < Time.now
+    sitzung.order(:datum).last.datum < Time.now if sitzung.last
   end
 
   def entscheidung_getroffen?
@@ -154,7 +160,7 @@ class Vorlage < ActiveRecord::Base
       else
         beschluss ? "#{beschluss} (#{decission_session.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"
       end
-    else
+    elsif sitzung_vorlage.next_sitzung.last
       sitzung = sitzung_vorlage.next_sitzung.last.sitzung
       "in Beratung: #{sitzung.formatted_datum} #{sitzung.gremium.title}"
     end
