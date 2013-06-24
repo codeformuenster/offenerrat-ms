@@ -15,6 +15,7 @@ gem 'newrelic_rpm'
 #search
 gem 'ransack' # MIT
 gem 'pg_search'
+gem 'has_scope'
 
 gem 'meta-tags', require: 'meta_tags'
 
@@ -38,7 +39,7 @@ group :development do
   gem 'rspec-rails'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.3.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
