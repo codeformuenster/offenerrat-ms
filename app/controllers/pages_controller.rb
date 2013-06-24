@@ -12,6 +12,8 @@ class PagesController < ApplicationController
     @sitzungen_woche = Sitzung.kommende_nach_morgen
     @last_themen = Subject.last_month
     @next_themen = Subject.next_month
+    @documents = Document.limit(5)
+    @district_gremien = Gremium.district_gremien
   end
 
   def impressum

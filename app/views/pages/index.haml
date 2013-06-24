@@ -6,6 +6,23 @@
         %table.table.table-striped
           = render partial: "vorlage/table_list", locals: { vorlagen: @vorlagen, gremium: nil, show_gremien: true }
     .row-fluid
+      .span6
+        %dl.documents
+          %dt Dokumente
+          %dd
+            = render partial: "documents/list", locals: { documents: @documents }
+      .span6
+        %dl.districts
+          %dt
+            %a{ class: "dropdown-toggle", "data-toggle" => "dropdown", href:"#" }=@district_gremien.first.title
+            %ul{ class: "dropdown-menu", role:"menu", "aria-labelledby" => "dropdownMenu" }
+              - @district_gremien.each_with_index do |gremium,index|
+                %li
+                  %a{href: "#", "data-id" => gremium.id}=gremium.title
+          - @district_gremien.each_with_index do |gremium, index|
+            %dd{class: "gremium_#{gremium.id}", style: ("display:none;" unless index == 0)}
+              = render partial: "vorlage/list", locals: { vorlagen: gremium.vorlagen.letzte.limit(3), gremium: gremium}
+    .row-fluid
       .span12
         %h5 Twitter #ratms
         #tweets

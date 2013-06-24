@@ -26,6 +26,7 @@ Offenerrat::Application.routes.draw do
   resources :sitzung, only: [:index,:show]
   resources :subjects, only: [:index,:show]
   resources :documents, only: [:index,:show]
+  resources :districts, only: [:index,:show]
 
   match "/gremien" => 'gremium#index'
   match "/vorlagen" => 'vorlage#index'

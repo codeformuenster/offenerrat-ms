@@ -5,9 +5,17 @@ class Gremium < ActiveRecord::Base
   has_many :sitzung
   has_many :vorlagen, through: :sitzung, source: :vorlagen
   has_one :subject
+  has_many :district
+
+  default_scope order(:title)
 
   include PgSearch
   attr_accessible :color, :title, :detail_url
+
+  def self.district_gremien
+    joins(:district).uniq
+  end
+
 
   def vorlagen_count
     self.vorlagen.count

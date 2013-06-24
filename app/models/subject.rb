@@ -5,6 +5,7 @@ class Subject < ActiveRecord::Base
 
   attr_accessible :title
 
+  default_scope order(:title)
   scope :last_month , lambda { Subject.joins(:gremium => [:sitzung => [:vorlagen]]).where("sitzung.datum <= ? AND sitzung.datum >= ?", Time.zone.now.beginning_of_day,1.months.ago).group("subjects.title,subjects.id").select("subjects.*,COUNT(vorlage.id) as vorlagen_count").order("vorlagen_count DESC") }
   scope :next_month , lambda { Subject.joins(:gremium => [:sitzung => [:vorlagen]]).where("sitzung.datum <= ? AND sitzung.datum >= ?", 1.months.from_now, Time.zone.now.beginning_of_day).group("subjects.title,subjects.id").select("subjects.*,COUNT(vorlage.id) as vorlagen_count").order("vorlagen_count DESC") }
 

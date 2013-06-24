@@ -4,10 +4,31 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-10.times do |i|
-  gremium = Gremium.find_or_create_by_title(title: 'Rat')
-  sitzung = Sitzung.find_or_create_by_datum(datum: i.days.from_now) { |m| m.raum = "Weinhaus"; m.gremium = gremium }
-  sitzung = Sitzung.find_or_create_by_datum(datum: i.days.ago) { |m| m.raum = "Weinhaus"; m.gremium = gremium }
+#   cities = City.create([{ title: 'Chicago' }, { title: 'Copenhagen' }])
+#   Mayor.create(title: 'Emanuel', city: cities.first)
+
+nord = Gremium.find_by_title("Bezirksvertretung Münster-Nord")
+ost = Gremium.find_by_title("Bezirksvertretung Münster-Ost")
+west = Gremium.find_by_title("Bezirksvertretung Münster-West")
+suedost = Gremium.find_by_title("Bezirksvertretung Münster-Südost")
+hiltrup = Gremium.find_by_title("Bezirksvertretung Münster-Hiltrup")
+mitte = Gremium.find_by_title("Bezirksvertretung Münster-Mitte")
+
+["Coerde", "Kinderhaus", "Sprakel"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id = nord.id }
+end
+["Gelmer", "Handorf"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id = ost }
+end
+["Albachten", "Gievenbeck", "Mecklenbeck", "Nienberge", "Häger", "Roxel"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id = west }
+end
+["Angelmodde", "Gremmendorf", "Wolbeck"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id =suedost }
+end
+["Amelsbüren", "Berg Fidel", "Hiltrup"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id = hiltrup }
+end
+["Mitte"].each do |os|
+  District.find_or_create_by_name(os) { |m| m.gremium_id = mitte }
 end

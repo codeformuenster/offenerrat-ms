@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603091246) do
+ActiveRecord::Schema.define(:version => 20130622050043) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,6 +45,34 @@ ActiveRecord::Schema.define(:version => 20130603091246) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "decission_categories", :force => true do |t|
+    t.string "title"
+  end
+
+  create_table "decissions", :force => true do |t|
+    t.string  "title"
+    t.integer "decission_category_id"
+  end
+
+  create_table "districts", :force => true do |t|
+    t.string   "name"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "gremium_id"
+  end
+
+  create_table "documents", :force => true do |t|
+    t.string  "title"
+    t.string  "name"
+    t.text    "html"
+    t.text    "url"
+    t.integer "vorlage_id"
+  end
+
+  add_index "documents", ["vorlage_id"], :name => "index_documents_on_vorlage_id"
 
   create_table "gremium", :force => true do |t|
     t.string "title"
@@ -80,6 +108,8 @@ ActiveRecord::Schema.define(:version => 20130603091246) do
     t.integer "sitzung_id"
     t.integer "vorlage_id"
     t.string  "typ"
+    t.boolean "guessed",      :default => false
+    t.integer "decission_id"
   end
 
   create_table "subjects", :force => true do |t|

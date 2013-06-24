@@ -9,4 +9,8 @@ class SitzungVorlage < ActiveRecord::Base
   scope :antraege, lambda { where("typ LIKE '%Antrag%'") }
   scope :next_sitzung, lambda { joins(:sitzung).where("sitzung.datum > ?",Time.now).order("sitzung.datum DESC")}
 
+  def self.types
+    SitzungVorlage.order("typ").pluck(:typ).uniq
+  end
+
 end
