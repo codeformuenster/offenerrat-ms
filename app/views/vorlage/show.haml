@@ -57,4 +57,12 @@
                   - @vorlage.subjects.uniq.each do |subject|
                     %tr
                       %td=link_to subject, subject
+          - if @vorlage.districts.count > 0
+            %tr
+              %th Bezirke:
+              %td
+                %table.table.table-borderless.table-condensed.table-inner
+                  - @vorlage.districts.uniq.each do |district|
+                    %tr
+                      %td=link_to district, district
           = render partial: "documents/short_table", locals: { documents: @vorlage.documents }
