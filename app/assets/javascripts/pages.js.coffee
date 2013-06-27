@@ -4,7 +4,7 @@
 jQuery(document).ready ()  ->
   $("a.gremien_color").popover()
 
-  $("dl.districts ul li a").click (e)->
+  $("dl.districts dt ul li a").click (e)->
     e.preventDefault()
     $('dl.districts dt a.dropdown-toggle').text(this.text)
     id = $(this).data("id")
