@@ -6,7 +6,7 @@ class Sitzung < ActiveRecord::Base
   scope :kommende_fuenf, lambda { where("datum >= ?", Time.zone.now.beginning_of_day ).order("datum ASC").limit(5) }
   scope :heute, lambda { where(datum: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day ) }
   scope :morgen, lambda { where(datum: Time.zone.now.tomorrow.beginning_of_day..Time.zone.now.tomorrow.end_of_day ) }
-  scope :kommende_nach_morgen, lambda { where("datum >= ?", Time.zone.now.tomorrow.end_of_day ).order("datum ASC").limit(2) }
+  scope :kommende_nach_morgen, lambda { where("datum >= ?", Time.zone.now.tomorrow.end_of_day ).order("datum ASC") }
   scope :dieser_monat, lambda { where(datum: Time.zone.now.beginning_of_day..1.month.from_now ).order("datum ASC") }
   scope :letzter_monat, lambda { where(datum: 1.month.ago..Time.zone.now.beginning_of_day ).order("datum DESC") }
   scope :abgelaufende, lambda { where("datum < ?", Time.zone.now.beginning_of_day ).order("datum DESC") }
