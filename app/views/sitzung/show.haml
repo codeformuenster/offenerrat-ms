@@ -18,6 +18,11 @@
               %td=@sitzung.formatted_time
             %tr
               %td="#{@sitzung.vorlagen.count} Vorlagen"
+            %tr
+              %td.notification
+                %button#notif{class: "btn btn-info"} Abonieren
+                #notification{style: "display:none;"}
+                  = render partial: "notifications/form", locals: { model: "Sitzung", model_id: @sitzung.id }
       .row-fluid
         .span12
           %h3 Vorlagen

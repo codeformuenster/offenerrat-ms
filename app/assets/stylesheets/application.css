@@ -30,3 +30,8 @@
 .table-borderless th {
     border: 0;
 }
+
+#alert {
+  height:30px;
+  padding: 10px 20px;
+}

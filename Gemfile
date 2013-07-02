@@ -10,6 +10,7 @@ gem "certified"
 gem "twitter"
 gem 'haml'
 
+
 gem 'newrelic_rpm'
 
 #search
@@ -17,10 +18,13 @@ gem 'ransack' # MIT
 gem 'pg_search'
 gem 'has_scope'
 
+gem 'token_phrase'
+
 gem 'meta-tags', require: 'meta_tags'
 
 gem 'activeadmin'
 
+gem 'glow'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-minicolors-rails'
 
@@ -37,6 +41,7 @@ end
 group :development do
   gem "pry"
   gem 'rspec-rails'
+  gem 'letter_opener'
 end
 
 gem 'jquery-rails', '2.3.0'

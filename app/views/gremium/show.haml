@@ -1,14 +1,23 @@
 .row-fluid
   .span12
     %h1=@gremium.title
-    #details
-      //%p="x Mitglieder"
-      %p="#{@gremium.vorlagen_count} Vorlagen"
+    .row-fluid
+      .span4
+        %table.table.table-condensed{style: "border-left: 5px solid #{@gremium.color}"}
+          %tr
+            %td="#{@gremium.vorlagen_count} Vorlagen"
+          %tr
+            %td.notification
+              %button#notif{class: "btn btn-info"} Abonieren
+              #notification{style: "display:none;"}
+                = render partial: "notifications/form", locals: { model: "Gremium", model_id: @gremium.id }
 
 .row-fluid
   .span6
     %h3 Nächste Sitzungen
     = render partial: "sitzung/list_details", locals: { sitzungen: @gremium.sitzung.kommende, klass:"kommende" }
+    %h3 Letzte Sitzungen
+    = render partial: "sitzung/list_details", locals: { sitzungen: @gremium.sitzung.abgelaufende.limit(5), klass:"abgelaufende" }
   .span6
     %h3 Vorlagen
     = render partial: "vorlage/list", locals: { vorlagen: @gremium.vorlagen, gremium: @gremium }

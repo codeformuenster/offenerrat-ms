@@ -1,3 +1,8 @@
 #alert-wrapper
   #alert
     .alert-message
+    #flash-messages
+    - flash.each  do |type, message|
+      = javascript_tag "Flash.fire('#{type}', '#{message}');"
+    %button#close-alert(type="button" class="close")
+      &times;

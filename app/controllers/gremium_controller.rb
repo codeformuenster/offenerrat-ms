@@ -23,6 +23,8 @@ class GremiumController < ApplicationController
 
     set_open_graph
     set_twitter_card
-
+    
+    @notification = Notification.new
+    
   end
 end

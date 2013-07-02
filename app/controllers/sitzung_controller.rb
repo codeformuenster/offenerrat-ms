@@ -24,10 +24,17 @@ class SitzungController < ApplicationController
     @page_description = "Sitzung #{@sitzung.gremium.title} #{@sitzung.formatted_datum}."
     @page_keywords    = "#{page_keywords}, Sitzung, #{@sitzung.gremium.title}"
 
+    @notification = Notification.new
 
     set_open_graph
     set_twitter_card
-
+    
+    respond_to do |format|
+       format.rss
+       format.html
+       format.atom
+    end
+    
 
   end
 end
