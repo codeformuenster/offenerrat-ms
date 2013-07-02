@@ -27,7 +27,9 @@ Offenerrat::Application.routes.draw do
   resources :subjects, only: [:index,:show]
   resources :documents, only: [:index,:show]
   resources :districts, only: [:index,:show]
-
+  resources :notifications, only: [:create,:destroy]
+  
+  match 'notifications/authentication/:token' => 'notifications#authentication', :as => :notification_authentication
   match "/gremien" => 'gremium#index'
   match "/vorlagen" => 'vorlage#index'
   match "/vorlagen/alle" => 'vorlage#all'

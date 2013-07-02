@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622050043) do
+ActiveRecord::Schema.define(:version => 20130629085057) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(:version => 20130622050043) do
     t.string   "name"
     t.float    "lat"
     t.float    "lng"
+    t.integer  "gremium_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "gremium_id"
   end
 
   create_table "documents", :force => true do |t|
@@ -80,9 +80,41 @@ ActiveRecord::Schema.define(:version => 20130622050043) do
     t.string "color"
   end
 
+  create_table "gremium_members", :id => false, :force => true do |t|
+    t.integer "gremium_id"
+    t.integer "member_id"
+  end
+
   create_table "gremium_vorlage", :id => false, :force => true do |t|
     t.integer "gremium_id"
     t.integer "vorlage_id"
+  end
+
+  create_table "members", :force => true do |t|
+    t.string   "name"
+    t.integer  "party_id"
+    t.integer  "district_id"
+    t.string   "profession"
+    t.integer  "age"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "email"
+    t.string   "model"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "model_id"
+    t.string   "token"
+    t.boolean  "authenticated", :default => false
+  end
+
+  create_table "parties", :force => true do |t|
+    t.string   "name"
+    t.string   "alt_names"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pg_search_documents", :force => true do |t|
@@ -108,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20130622050043) do
     t.integer "sitzung_id"
     t.integer "vorlage_id"
     t.string  "typ"
-    t.boolean "guessed",      :default => false
+    t.boolean "guessed"
     t.integer "decission_id"
   end
 
@@ -117,6 +149,10 @@ ActiveRecord::Schema.define(:version => 20130622050043) do
     t.integer  "gremium_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "types", :force => true do |t|
+    t.string "title"
   end
 
   create_table "vorlage", :force => true do |t|
@@ -129,13 +165,6 @@ ActiveRecord::Schema.define(:version => 20130622050043) do
     t.string   "zustaendig"
     t.text     "long_title"
     t.datetime "datum"
-  end
-
-  create_table "vorlagen", :id => false, :force => true do |t|
-    t.integer "id",       :null => false
-    t.text    "titel"
-    t.text    "url"
-    t.integer "stadt_id"
   end
 
 end

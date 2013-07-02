@@ -1,0 +1,5 @@
+= form_for @notification, remote: true do |f|
+  = f.text_field :email, placeholder: "E-Mail-Adresse"
+  = f.hidden_field :model, value: model
+  = f.hidden_field :model_id, value: model_id
+  = submit_tag 'Abonieren'

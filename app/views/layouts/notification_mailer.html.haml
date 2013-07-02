@@ -1,0 +1,68 @@
+!!!
+%html
+  %head
+
+
+    %title=@_message.subject
+    :css
+      #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
+      body{width:100% !important;} /* Force Hotmail to display emails at full width */
+      body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+      body{margin:0; padding:0;}
+      img{border:none; font-size:14px; font-weight:bold; height:auto; line-height:100%; outline:none; text-decoration:none; text-transform:capitalize;}
+      #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+      .preheaderContent div{
+        color:#505050;
+        font-family:Arial;
+        font-size:10px;
+        line-height:100%;
+        text-align:left;
+      }
+      .bodyContent .contentText {
+        color:#333333;
+        font-family:Arial;
+        font-size:12px;
+        line-height:150%;
+        text-align:left;
+      }
+      .bodyContent  a {
+        color:#008eae;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+
+  %body{ leftmargin: "0", marginwidth: "0", topmargin: "0", marginheight: "0", offset: "0", style:"background-color:#f3f3f3;" }
+    %center
+      %table#backgroundTable{ border:"0", cellpadding: "0", cellspacing: "0", height: "100%", width: "100%", bgcolor:"#f3f3f3" }
+        %tr
+          %td{ align:"center", valign: "top", width: "100%"}
+            %table#templateContainer{ border:"0", cellpadding: "0", cellspacing:"0", width:"100%" , style:"border: 1px solid #DDDDDD;border-spacing:0;font-family:Arial;" }
+              %tr
+                %td{ valign:"top" ,width:"100%"}
+                  %table#templateHeader{ border:"0", cellpadding:"0", cellspacing: "0", width: "100%", bgcolor:"B65848" }
+                    %tr{ height: "10"}
+                      %td{ width:"10" }
+                      %td{ height: "10"}
+                    %tr
+                      %td{ width:"10" }
+                      %td
+                        %p
+
+
+                    %tr{ height: "10"}
+                      %td{ height: "10"}
+              %tr
+                %td{ align: "center", valign: "top", width: "100%" }
+                  %table#templateContent{ border:"0", cellpadding:"0", cellspacing:"0", width:"100%", bgcolor:"#FFFFFF" }
+                    %tr{ height: "10" }
+                      %td{ height:"10" }
+                    %tr
+                      %td{ width:"5%"}
+                      %td{ width:"90%", valign:"top"}
+                        =yield
+                      %td{ width:"5%"}
+                    %tr{ height: "10" }
+                      %td{ height:"10" }
+
+
