@@ -7,7 +7,7 @@
           - subject_slice.each do |subject|
             - if subject.vorlagen.letzte.count > 0
               %h4
-                %span=subject.title
+                %span= link_to subject, subject
                 = link_to image_tag('rss.png'), subject_path(subject.id,format: :atom)
               %dl
                 %dt Vorlagen
