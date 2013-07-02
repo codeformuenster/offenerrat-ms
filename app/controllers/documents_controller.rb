@@ -13,7 +13,12 @@ class DocumentsController < ApplicationController
 
     set_open_graph
     set_twitter_card
-
+    
+    respond_to do |format|
+      format.html
+      format.pdf { redirect_to @document.url }
+    end
+    
   end
 
 end
