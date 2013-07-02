@@ -9,6 +9,7 @@ class Vorlage < ActiveRecord::Base
   has_many :subjects, through: :gremium
   has_many :documents
   has_many :districts, through: :gremium
+  belongs_to :party
 
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
   scope :letzter_monat , lambda { where(datum: 1.month.ago.beginning_of_day..Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
