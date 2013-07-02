@@ -11,7 +11,7 @@ class Document < ActiveRecord::Base
   end
 
   def to_s
-    "#{title} (#{vorlage.name})"
+    vorlage ? "#{title} (#{vorlage.name})" : "#{title}"
   end
 
   def self.resource_index_attributes
