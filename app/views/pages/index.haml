@@ -51,11 +51,11 @@
           %dt Letzte Themen
           %dd
             - @last_themen.each do |thema|
-              %p=thema.title
+              %p= link_to thema,thema
     .row-fluid
       .span12
         %dl
           %dt Kommende Themen
           %dd
             - @next_themen.each do |thema|
-              %p=thema.title
+              %p= link_to thema,thema
