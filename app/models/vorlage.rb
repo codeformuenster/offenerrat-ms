@@ -67,10 +67,10 @@ class Vorlage < ActiveRecord::Base
   end
 
   def decission_session
-    self.sitzung.zustaendig.first if self.sitzung && self.sitzung.zustaendig
+    sitzung.zustaendig.first if sitzung && sitzung.zustaendig
   end
   def entscheidungs_sitzung
-    decission_session.sitzung_vorlage.find_by_vorlage_id(self.id) if decission_session
+    decission_session.sitzung_vorlage.find_by_vorlage_id(id) if decission_session
   end
   def entscheidung
     decission = sitzung_vorlage.first.decission
@@ -78,7 +78,7 @@ class Vorlage < ActiveRecord::Base
       unless decission.decission_category == 1
         decission.title
       else
-        self.sitzung_vorlage.first.decission.decission_category.title
+        sitzung_vorlage.first.decission.decission_category.title
       end
     end
   end
@@ -86,10 +86,10 @@ class Vorlage < ActiveRecord::Base
     entscheidungs_sitzung.decission.decission_category.title if entscheidungs_sitzung && entscheidungs_sitzung.decission
   end
   def decission_session_title
-    self.decission_session.gremium.title
+    decission_session.gremium.title
   end
   def decission_session_color
-    self.decission_session.gremium.color
+    decission_session.gremium.color
   end
   def decission_content
     if sitzung = sitzung_for_gremium(decission_session.gremium)
@@ -101,22 +101,22 @@ class Vorlage < ActiveRecord::Base
   end
 
   def gremien_sitzungen
-    self.sitzung.includes(:gremium).order("sitzung.datum DESC")
+    sitzung.includes(:gremium).order("sitzung.datum DESC")
   end
 
   def typ_for_sitzung(sitzung)
-    self.sitzung_vorlage.find_by_sitzung_id(sitzung).typ
+    sitzung_vorlage.find_by_sitzung_id(sitzung).typ
   end
   def entscheidung_for_sitzung(sitzung)
-    self.sitzung_vorlage.find_by_sitzung_id(sitzung).decission
+    sitzung_vorlage.find_by_sitzung_id(sitzung).decission
   end
 
   def typ_for_gremium(gremium)
-    self.sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
+    sitzung_vorlage.joins(:sitzung).where("sitzung.gremium_id = ?",gremium.id).first.typ
   end
 
   def sitzung_for_gremium(gremium)
-    self.sitzung.where(gremium_id: gremium).first
+    sitzung.where(gremium_id: gremium).first
   end
   def gremium_content(gremium)
     if sitzung = sitzung_for_gremium(gremium)
@@ -128,14 +128,14 @@ class Vorlage < ActiveRecord::Base
   end
 
   def gremien_list
-    self.gremium.map(&:to_s).join(', ')
+    gremium.map(&:to_s).join(', ')
   end
 
   def gremien_path
-    if self.decission_session
-      self.gremium.where('gremium.id <> ?',self.decission_session.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
+    if decission_session
+      gremium.where('gremium.id <> ?',decission_session.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
     else
-      self.gremium.includes(:sitzung).order('sitzung.datum DESC')
+      gremium.includes(:sitzung).order('sitzung.datum DESC')
     end
   end
 
