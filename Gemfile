@@ -10,6 +10,8 @@ gem "certified"
 gem "twitter"
 gem 'haml'
 
+gem "rack-timeout"
+
 
 gem 'newrelic_rpm'
 
