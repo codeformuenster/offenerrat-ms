@@ -67,7 +67,7 @@ class Vorlage < ActiveRecord::Base
   end
 
   def decission_session
-    self.sitzung.zustaendig.first
+    self.sitzung.zustaendig.first if self.sitzung && self.sitzung.zustaendig
   end
   def entscheidungs_sitzung
     decission_session.sitzung_vorlage.find_by_vorlage_id(self.id) if decission_session
