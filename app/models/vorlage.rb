@@ -1,7 +1,7 @@
 class Vorlage < ActiveRecord::Base
   self.table_name = "vorlage"
   validates :stadt_id, uniqueness: true
-
+  
 
   has_many :gremium, through: :sitzung
   has_many :sitzung, through: :sitzung_vorlage, include: :sitzung_vorlage
@@ -28,7 +28,7 @@ class Vorlage < ActiveRecord::Base
   def base_url
     Offenerrat::Application::BASE_URL
   end
-
+  
   def title
     long_title
   end
@@ -71,7 +71,7 @@ class Vorlage < ActiveRecord::Base
     sitzung.zustaendig.first if sitzung && sitzung.zustaendig
   end
   def entscheidungs_sitzung
-    decission_session.sitzung_vorlage.find_by_vorlage_id(id) if decission_session
+    zustaendig.sitzung_vorlage.find_by_vorlage_id(id) if zustaendig
   end
   def entscheidung
     decission = sitzung_vorlage.first.decission
@@ -86,14 +86,14 @@ class Vorlage < ActiveRecord::Base
   def beschluss
     entscheidungs_sitzung.decission.decission_category.title if entscheidungs_sitzung && entscheidungs_sitzung.decission
   end
-  def decission_session_title
-    decission_session.gremium.title
+  def zustaendig_title
+    zustaendig.gremium.title
   end
-  def decission_session_color
-    decission_session.gremium.color
+  def zustaendig_color
+    zustaendig.gremium.color
   end
   def decission_content
-    if sitzung = sitzung_for_gremium(decission_session.gremium)
+    if sitzung = sitzung_for_gremium(zustaendig.gremium)
       content = "Entscheidung: #{sitzung.formatted_datum}"
       content += beschluss ? " #{beschluss}" : " #{entscheidung}"
     else
@@ -133,8 +133,8 @@ class Vorlage < ActiveRecord::Base
   end
 
   def gremien_path
-    if decission_session
-      gremium.where('gremium.id <> ?',decission_session.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
+    if zustaendig
+      gremium.where('gremium.id <> ?',zustaendig.gremium.id).includes(:sitzung).order('sitzung.datum DESC')
     else
       gremium.includes(:sitzung).order('sitzung.datum DESC')
     end
@@ -160,7 +160,7 @@ class Vorlage < ActiveRecord::Base
       unless entscheidung_getroffen?
         "keine Entscheidung bekannt"
       else
-        beschluss ? "#{beschluss} (#{decission_session.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"
+        beschluss ? "#{beschluss} (#{zustaendig.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"
       end
     elsif sitzung_vorlage.next_sitzung.last
       sitzung = sitzung_vorlage.next_sitzung.last.sitzung
