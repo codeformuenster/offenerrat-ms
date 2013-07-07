@@ -1,7 +1,7 @@
 class SitzungVorlage < ActiveRecord::Base
   self.table_name = "sitzung_vorlage"
-  belongs_to :sitzung
-  belongs_to :vorlage
+  belongs_to :sitzung, touch: true
+  belongs_to :vorlage, touch: true
   belongs_to :decission
 
   scope :entscheidungen, lambda { where("typ LIKE '%Entscheidung%'") }

@@ -1,11 +1,11 @@
 - vorlagen.each do |vorlage|
-  - cache(vorlage) do
+  - cache vorlage do
     %tr
       %td=link_to "#{vorlage.name}", vorlage
       %td
         =link_to "#{vorlage.title}", vorlage
         %br
-        = vorlage.next_step
+        = vorlage.material_logos
       %td
         %ul
           - if vorlage.gremien_path || vorlage.zustaendig
