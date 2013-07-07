@@ -67,7 +67,7 @@ class Sitzung < ActiveRecord::Base
   end
 
   def vorlagen_for_subject(subject)
-    self.vorlagen.joins(:subjects).where("subjects.id = ?",subject.id).all
+    self.vorlagen.joins(:subjects).where("subjects.id = ?",subject.id).uniq.all
   end
 
 
