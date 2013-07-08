@@ -33,6 +33,11 @@
     .row-fluid
       .span12
         %dl.sitzungen
+          %dt Nächste Ratssitzung
+          %dd= link_to @ratssitzung.formatted_datetime, @ratssitzung
+    .row-fluid
+      .span12
+        %dl.sitzungen
           %dt Sitzungen
           - if @sitzungen_heute.count > 0
             %dd

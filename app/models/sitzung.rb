@@ -13,6 +13,7 @@ class Sitzung < ActiveRecord::Base
   scope :ohne_termin, lambda { where("datum IS NULL or CAST(datum as text) = ''") }
   scope :zustaendig, lambda { where("typ LIKE '%Entscheidung%'") }
   scope :feed, lambda { where("datum < ?", Time.zone.now.tomorrow.end_of_day ).order("datum DESC") }
+  scope :rat, lambda { includes(:gremium).where("gremium.title = 'Rat'").order("datum DESC") }
 
   belongs_to :gremium
   has_many :vorlagen, through: :sitzung_vorlage, source: :vorlage
