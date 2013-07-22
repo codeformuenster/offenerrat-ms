@@ -18,5 +18,6 @@
 //= require flat-ui/jquery.tagsinput
 //= require flat-ui/jquery.placeholder
 //= require twitter/bootstrap
+//= require turbolinks
 //= require glow
 //= require pages

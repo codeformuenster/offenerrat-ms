@@ -12,6 +12,7 @@ gem 'haml'
 
 gem "rack-timeout"
 
+gem 'turbolinks'
 
 gem 'newrelic_rpm'
 
