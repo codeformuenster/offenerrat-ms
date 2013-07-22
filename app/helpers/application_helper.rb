@@ -34,4 +34,12 @@ module ApplicationHelper
     @page_description = page_description
     @page_keywords    = page_keywords
   end
+  
+  def comma_seperated_links_for(list)
+    raise TypeError, "parameter must be an array" unless list.is_a? Array 
+    return if list.count == 0
+    list.collect do |item| 
+      link_to(item, item) 
+     end.join(", ").html_safe
+  end
 end
