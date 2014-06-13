@@ -15,7 +15,7 @@ class Vorlage < ActiveRecord::Base
   scope :letzte, lambda { where("vorlage.datum <= ?", Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
   scope :letzter_monat , lambda { where(datum: 1.month.ago.beginning_of_day..Time.zone.now.beginning_of_day ).order("vorlage.datum DESC") }
   scope :beschlossene, lambda { joins(:sitzung_vorlage).joins(:sitzung).where("sitzung_vorlage.decission_id IN (?) AND sitzung_vorlage.typ = 'Entscheidung'",Decission.beschlossen.all).order("sitzung.datum DESC").group("vorlage.id, sitzung.datum") }
-  scope :in_beratung, lambda { joins(:sitzung).where("sitzung.datum > ?",Time.zone.now.beginning_of_day).order("sitzung.datum ASC").group("vorlage.id, sitzung.datum") }
+  scope :in_beratung, lambda { joins(:sitzung).joins(:sitzung_vorlage).where("sitzung_vorlage.typ = 'Entscheidung' AND sitzung_vorlage.decission_id IS NULL AND sitzung.datum > ?",Time.zone.two.days.ago.beginning_of_day).order("sitzung.datum ASC").group("vorlage.id, sitzung.datum") }
 
   scope :by_district, -> district { includes(:districts).where("districts.id = ?", district) }
   scope :by_subject, -> subject { includes(:subjects).where("subjects.id = ?", subject) }
