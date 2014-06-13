@@ -5,6 +5,7 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
+    @vorlagen = @subject.vorlagen.paginate(page: params[:page])
     respond_to do |format|
        format.rss { render :layout => false }
        format.html

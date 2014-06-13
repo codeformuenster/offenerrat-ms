@@ -7,4 +7,4 @@
 .row-fluid#vorlagen
   .span12
     %table.table.table-striped
-      = render partial: "vorlage/table_list", locals: { vorlagen: @subject.vorlagen, gremium: nil, show_gremien: true }
+      = render partial: "vorlage/table_list", locals: { vorlagen: @vorlagen, gremium: nil, show_gremien: true }
