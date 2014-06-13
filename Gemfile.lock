@@ -187,8 +187,6 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (0.6.1)
-      coffee-rails
     twitter (4.8.1)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
@@ -204,6 +202,7 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    will_paginate (3.0.0)
 
 PLATFORMS
   ruby
@@ -229,7 +228,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   token_phrase
-  turbolinks
   twitter
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  will_paginate (~> 3.0)

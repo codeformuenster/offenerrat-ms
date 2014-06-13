@@ -12,7 +12,7 @@ gem 'haml'
 
 gem "rack-timeout"
 
-gem 'turbolinks'
+gem 'will_paginate', '~> 3.0'
 
 gem 'newrelic_rpm'
 
