@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codeformuenster/offenerrat-ms.png?label=ready&title=Ready)](https://waffle.io/codeformuenster/offenerrat-ms)
 # Offener Rat Münster
 
 ## Das offene Ratsinformationssystem für Münster
