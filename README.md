@@ -18,6 +18,7 @@ Feature branches should be names `Issue#-descriptive-name` - see https://github.
 
 # Supporting
 [![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=1614726)](https://www.bountysource.com/trackers/1614726-offenerrat-ms?utm_source=1614726&utm_medium=shield&utm_campaign=TRACKER_BADGE)
+
 You can support the project by posting a bounty for a feature/issue.
 
 # Deploying
