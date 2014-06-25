@@ -10,7 +10,7 @@ Der Offene Rat Münster soll das politische Geschehen in Münster transparenter 
 ## Contributing
 [![Stories in Ready](https://badge.waffle.io/codeformuenster/offenerrat-ms.png?label=ready&title=Ready)](https://waffle.io/codeformuenster/offenerrat-ms)
 
-Issues are managed in [Github Issues](https://github.com/codeformuenster/offenerrat-ms/issues?state=open). You can also view them on a [Kanban board](https://badge.waffle.io/codeformuenster/offenerrat-ms).
+Issues are managed in [Github Issues](https://github.com/codeformuenster/offenerrat-ms/issues?state=open). You can also view them on a [Kanban board](https://waffle.io/codeformuenster/offenerrat-ms).
 
 Either fork and pull-request or ask @kirel or @milafrerichs for access and work on feature branches.
 
