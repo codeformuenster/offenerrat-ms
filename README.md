@@ -1,5 +1,5 @@
 # Offener Rat Münster
-
+[![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
 ## Das offene Ratsinformationssystem für Münster
 
 http://offenerrat-ms.herokuapp.com/
