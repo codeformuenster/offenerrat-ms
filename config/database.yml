@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: or
-  username: or
-  password: or
+  database: offenerrat_ms
+  username: milafrerichs
+  password: 
   host: localhost
   port: 5432
 
@@ -12,8 +12,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: d1ra3evdbl6p8t
-  username: xcpvwbexusyjhj
-  password: 1c0lGcBzli2sUkSh-yc_WjzyW6
-  host: ec2-107-22-169-108.compute-1.amazonaws.com
-  port: 5432
+  database: <%= ENV['DB_ENV_POSTGRESQL_DB'] %>
+  username: <%= ENV['DB_ENV_POSTGRESQL_USER'] %>
+  password: <%= ENV['DB_ENV_POSTGRESQL_PASS'] %>
+  host: <%= ENV.fetch 'DB_1_PORT_5432_TCP_ADDR', 'localhost' %>
+  port: <%= ENV.fetch 'DB_1_PORT_5432_TCP_PORT', '5432' %>
