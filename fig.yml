@@ -4,6 +4,8 @@ app:
     RAILS_ENV:
   ports:
     - "3333:3000"
+  volumes:
+    - .:/offenerrat-ms
   links:
     - db
 db:
