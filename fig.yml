@@ -3,7 +3,7 @@ app:
   environment:
     RAILS_ENV:
   ports:
-    - "3000:3000"
+    - "3333:3000"
   links:
     - db
 db:
