@@ -8,12 +8,9 @@ development:
   port: 5432
 
 test:
-  adapter: sqlite
-  encoding: utf8
-  reconnect: false
-  database: offenerrat_test
-  username: root
-  password:
+  adapter: sqlite3
+  database: db/offenerrat_test.sqlite3
+  timeout: 5000
 
 production:
   adapter: postgresql
