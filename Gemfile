@@ -47,6 +47,10 @@ group :development do
   gem 'letter_opener'
 end
 
+group :test do
+  gem 'sqlite3'
+end
+
 gem 'jquery-rails', '2.3.0'
 
 # To use ActiveModel has_secure_password
