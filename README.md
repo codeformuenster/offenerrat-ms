@@ -1,5 +1,7 @@
 # Offener Rat Münster
 [![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
+[ ![Codeship Status for
+milafrerichs/offenerrat](https://codeship.io/projects/09d03480-3933-0132-ffeb-4eb13bd0ee77/status)](https://codeship.io/projects/42172)
 ## Das offene Ratsinformationssystem für Münster
 
 http://offenerrat-ms.herokuapp.com/
