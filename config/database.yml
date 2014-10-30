@@ -7,6 +7,13 @@ development:
   host: localhost
   port: 5432
 
+test:
+  adapter: sqlite
+  encoding: utf8
+  reconnect: false
+  database: offenerrat_test
+  username: root
+  password:
 
 production:
   adapter: postgresql
