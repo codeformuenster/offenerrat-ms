@@ -1,23 +1,9 @@
-development:
+<%= Rails.env %>:
   adapter: postgresql
   encoding: unicode
-  database: offenerrat_ms
-  username: milafrerichs
-  password: 
-  host: localhost
-  port: 5432
-
-test:
-  adapter: sqlite3
-  database: db/offenerrat_test.sqlite3
-  timeout: 5000
-
-production:
-  adapter: postgresql
-  encoding: unicode
+  host: <%= ENV['DB_PORT_5432_TCP_ADDR'] || ENV['DB_HOST'] %>
+  database: <%= ENV['DB_ENV_POSTGRESQL_DB'] || ENV['DB_NAME'] %>
+  port: <%= ENV['DB_PORT_5432_TCP_PORT'] || ENV['DB_PORT'] %>
   pool: 5
-  database: <%= ENV['DB_ENV_POSTGRESQL_DB'] %>
-  username: <%= ENV['DB_ENV_POSTGRESQL_USER'] %>
-  password: <%= ENV['DB_ENV_POSTGRESQL_PASS'] %>
-  host: <%= ENV.fetch 'DB_1_PORT_5432_TCP_ADDR', 'localhost' %>
-  port: <%= ENV.fetch 'DB_1_PORT_5432_TCP_PORT', '5432' %>
+  username: <%= ENV['DB_ENV_POSTGRESQL_USER'] || ENV['DB_USER'] %>
+  password: <%= ENV['DB_ENV_POSTGRESQL_PASS'] || ENV['DB_PASSWORD'] %>
