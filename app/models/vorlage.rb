@@ -160,7 +160,7 @@ class Vorlage < ActiveRecord::Base
       unless entscheidung_getroffen?
         "keine Entscheidung bekannt"
       else
-        beschluss ? "#{beschluss} (#{zustaendig.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.formatted_datum})"
+        beschluss ? "#{beschluss} (#{zustaendig.formatted_datum})" : "#{entscheidung} (#{sitzung_vorlage.first.sitzung.try(:formatted_datum)})"
       end
     elsif sitzung_vorlage.next_sitzung.last
       sitzung = sitzung_vorlage.next_sitzung.last.sitzung
