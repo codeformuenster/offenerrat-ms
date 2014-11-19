@@ -51,7 +51,7 @@ class VorlageController < ApplicationController
     @page_description = 'Alle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
     @title = "Alle Vorlagen"
     @filter_path = vorlage_path(:all)
-    @vorlagen = apply_scopes(Vorlage).all.page(params[:page])
+    @vorlagen = apply_scopes(Vorlage).page(params[:page])
 
     respond_to do |format|
       format.html { render action: :index }
