@@ -51,6 +51,10 @@ group :test do
   gem 'sqlite3'
 end
 
+group :development, :test do
+  gem 'spring'
+end
+
 gem 'jquery-rails', '2.3.0'
 
 # To use ActiveModel has_secure_password
