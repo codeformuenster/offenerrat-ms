@@ -1,4 +1,12 @@
 #encoding: utf-8
+%w[beschlossen abgelehnt ohne].each_with_index do |title, id|
+  DecissionCategory.new.tap do |dc| 
+    dc.id = id
+    dc.title = title
+    dc.save!
+  end
+end
+
 nord = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Nord")
 ost = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Ost")
 west = Gremium.find_or_create_by_title("Bezirksvertretung Münster-West")
