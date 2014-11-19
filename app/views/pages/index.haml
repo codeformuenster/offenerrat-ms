@@ -2,16 +2,17 @@
   .span7
     .row-fluid
       .span12#rat
-        %dl
-          %dt Nächste Ratssitzung
-          %dd
-            = link_to @ratssitzung.formatted_datetime, @ratssitzung
-          %dd
-            %h6 Themen:
-            = comma_seperated_links_for @ratssitzung.subjects.uniq
-          %dd
-            %h6 Vorlagenauszug:
-            = render partial: "vorlage/list", locals: { vorlagen: @ratssitzung.vorlagen.limit(5), gremium: @ratssitzung.gremium, show_gremien: false }
+        - if @ratssitzung.present?
+          %dl
+            %dt Nächste Ratssitzung
+            %dd
+              = link_to @ratssitzung.formatted_datetime, @ratssitzung
+            %dd
+              %h6 Themen:
+              = comma_seperated_links_for @ratssitzung.subjects.uniq
+            %dd
+              %h6 Vorlagenauszug:
+              = render partial: "vorlage/list", locals: { vorlagen: @ratssitzung.vorlagen.limit(5), gremium: @ratssitzung.gremium, show_gremien: false }
           
     .row-fluid
       .span12#vorlagen
