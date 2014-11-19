@@ -1,18 +1,10 @@
 #encoding: utf-8
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ title: 'Chicago' }, { title: 'Copenhagen' }])
-#   Mayor.create(title: 'Emanuel', city: cities.first)
-
-nord = Gremium.find_by_title("Bezirksvertretung Münster-Nord")
-ost = Gremium.find_by_title("Bezirksvertretung Münster-Ost")
-west = Gremium.find_by_title("Bezirksvertretung Münster-West")
-suedost = Gremium.find_by_title("Bezirksvertretung Münster-Südost")
-hiltrup = Gremium.find_by_title("Bezirksvertretung Münster-Hiltrup")
-mitte = Gremium.find_by_title("Bezirksvertretung Münster-Mitte")
+nord = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Nord")
+ost = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Ost")
+west = Gremium.find_or_create_by_title("Bezirksvertretung Münster-West")
+suedost = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Südost")
+hiltrup = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Hiltrup")
+mitte = Gremium.find_or_create_by_title("Bezirksvertretung Münster-Mitte")
 
 ["Coerde", "Kinderhaus", "Sprakel"].each do |os|
   District.find_or_create_by_name(os) { |m| m.gremium_id = nord.id }
@@ -32,7 +24,6 @@ end
 ["Mitte"].each do |os|
   District.find_or_create_by_name(os) { |m| m.gremium_id = mitte.id }
 end
-
 
 Party.find_or_create_by_name("SPD")
 Party.find_or_create_by_name("CDU")
