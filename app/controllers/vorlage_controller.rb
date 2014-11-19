@@ -24,7 +24,7 @@ class VorlageController < ApplicationController
     meta
     @title = "Aktuelle Vorlagen"
     @filter_path = vorlagen_path
-    @vorlagen = apply_scopes(Vorlage).letzter_monat.paginate(page: params[:page])
+    @vorlagen = apply_scopes(Vorlage).letzter_monat.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -51,7 +51,7 @@ class VorlageController < ApplicationController
     @page_description = 'Alle Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
     @title = "Alle Vorlagen"
     @filter_path = vorlage_path(:all)
-    @vorlagen = apply_scopes(Vorlage).all.paginate(page: params[:page])
+    @vorlagen = apply_scopes(Vorlage).all.page(params[:page])
 
     respond_to do |format|
       format.html { render action: :index }
@@ -66,7 +66,7 @@ class VorlageController < ApplicationController
     @page_description = 'Beschlossene Vorlagen der Stadtverwaltung und Anträge der Parteien im Rat.'
     @title = "Beschlossene Vorlagen"
     @filter_path = vorlage_path(:beschlossene)
-    @vorlagen = apply_scopes(Vorlage).beschlossene.paginate(page: params[:page])
+    @vorlagen = apply_scopes(Vorlage).beschlossene.page(params[:page])
 
     respond_to do |format|
       format.html { render action: :index }
@@ -79,7 +79,7 @@ class VorlageController < ApplicationController
     @page_title       = "#{page_title} | Vorlagen in Beratung"
     @title = "Vorlagen in Beratung"
     @filter_path = vorlage_path(:in_beratung)
-    @vorlagen = apply_scopes(Vorlage).in_beratung.paginate(page: params[:page])
+    @vorlagen = apply_scopes(Vorlage).in_beratung.page(params[:page])
     respond_to do |format|
       format.html { render action: :index }
       format.rss { render :layout => false, action: :index }
