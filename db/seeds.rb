@@ -33,3 +33,5 @@ Party.find_or_create_by_name("Piratenpartei")
 Party.find_or_create_by_name("UWG")
 Party.find_or_create_by_name("Bündniss 90/Die Grünen/GAL")
 Party.find_or_create_by_name("ÖDP")
+
+AdminUser.create email: 'admin@example.com', password: 'password'
