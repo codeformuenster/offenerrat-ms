@@ -14,3 +14,5 @@ db:
     POSTGRESQL_USER: postgres
     POSTGRESQL_PASS:
     POSTGRESQL_DB: postgres
+  volumes:
+    - db/latest.dump:/mnt/latest.dump

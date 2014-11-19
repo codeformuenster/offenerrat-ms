@@ -6,6 +6,30 @@ http://offenerrat-ms.herokuapp.com/
 
 Der Offene Rat Münster soll das politische Geschehen in Münster transparenter machen und mehr Bürgern die Möglichkeit geben sich umfassend zu informieren. 
 
+## Setup with Docker
+
+Install Docker and Fig.
+
+Build the app:
+
+    sudo fig build
+
+(DON'T) Setup the database:
+
+    sudo RAILS_ENV=development fig up -d db
+    sudo RAILS_ENV=development fig run --rm app rake db:setup
+
+Better, import real data:
+
+(Put _latest.dump_ in the "db" subdirectory.)
+
+    sudo RAILS_ENV=development fig run db bash -c 'pg_restore -h $DB_PORT_5432_TCP_ADDR -d $DB_ENV_POSTGRESQL_DB -U $DB_ENV_POSTGRESQL_USER  /mnt/latest.dump'
+
+Run the app:
+
+    sudo RAILS_ENV=development fig up --no-recreate app
+
+The app should now be available at [http://localhost:3333](http://localhost:3333).
 
 ## Contributing
 [![Stories in Ready](https://badge.waffle.io/codeformuenster/offenerrat-ms.png?label=ready&title=Ready)](https://waffle.io/codeformuenster/offenerrat-ms)
