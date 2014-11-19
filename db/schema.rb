@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130629085057) do
+ActiveRecord::Schema.define(:version => 20141105203410) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
     t.integer "decission_category_id"
   end
 
+  add_index "decissions", ["decission_category_id"], :name => "index_decissions_on_decission_category_id"
+
   create_table "districts", :force => true do |t|
     t.string   "name"
     t.float    "lat"
@@ -90,6 +92,9 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
     t.integer "vorlage_id"
   end
 
+  add_index "gremium_vorlage", ["gremium_id"], :name => "index_gremium_vorlage_on_gremium_id"
+  add_index "gremium_vorlage", ["vorlage_id"], :name => "index_gremium_vorlage_on_vorlage_id"
+
   create_table "members", :force => true do |t|
     t.string   "name"
     t.integer  "party_id"
@@ -103,9 +108,9 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
   create_table "notifications", :force => true do |t|
     t.string   "email"
     t.string   "model"
+    t.integer  "model_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
-    t.integer  "model_id"
     t.string   "token"
     t.boolean  "authenticated", :default => false
   end
@@ -136,13 +141,18 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "sitzung_vorlage", :id => false, :force => true do |t|
+  add_index "sitzung", ["gremium_id"], :name => "index_sitzung_on_gremium_id"
+
+  create_table "sitzung_vorlage", :force => true do |t|
     t.integer "sitzung_id"
     t.integer "vorlage_id"
     t.string  "typ"
     t.boolean "guessed"
     t.integer "decission_id"
   end
+
+  add_index "sitzung_vorlage", ["sitzung_id"], :name => "index_sitzung_vorlage_on_sitzung_id"
+  add_index "sitzung_vorlage", ["vorlage_id"], :name => "index_sitzung_vorlage_on_vorlage_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "title"
@@ -151,9 +161,7 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "types", :force => true do |t|
-    t.string "title"
-  end
+  add_index "subjects", ["gremium_id"], :name => "index_subjects_on_gremium_id"
 
   create_table "vorlage", :force => true do |t|
     t.text     "title"
@@ -162,9 +170,11 @@ ActiveRecord::Schema.define(:version => 20130629085057) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "zustaendig"
     t.text     "long_title"
     t.datetime "datum"
+    t.integer  "zustaendig"
   end
+
+  add_index "vorlage", ["zustaendig"], :name => "index_vorlage_on_zustaendig"
 
 end
