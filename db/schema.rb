@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141105203410) do
+ActiveRecord::Schema.define(:version => 20130707171427) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -108,9 +108,9 @@ ActiveRecord::Schema.define(:version => 20141105203410) do
   create_table "notifications", :force => true do |t|
     t.string   "email"
     t.string   "model"
-    t.integer  "model_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.integer  "model_id"
     t.string   "token"
     t.boolean  "authenticated", :default => false
   end
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20141105203410) do
 
   add_index "sitzung", ["gremium_id"], :name => "index_sitzung_on_gremium_id"
 
-  create_table "sitzung_vorlage", :force => true do |t|
+  create_table "sitzung_vorlage", :id => false, :force => true do |t|
     t.integer "sitzung_id"
     t.integer "vorlage_id"
     t.string  "typ"
@@ -162,6 +162,10 @@ ActiveRecord::Schema.define(:version => 20141105203410) do
   end
 
   add_index "subjects", ["gremium_id"], :name => "index_subjects_on_gremium_id"
+
+  create_table "types", :force => true do |t|
+    t.string "title"
+  end
 
   create_table "vorlage", :force => true do |t|
     t.text     "title"
