@@ -31,6 +31,8 @@ gem 'glow'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-minicolors-rails'
 
+gem 'wombat'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -49,6 +51,8 @@ end
 
 group :test do
   gem 'sqlite3'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development, :test do
