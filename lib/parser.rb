@@ -15,9 +15,9 @@ module Parser
     end
 
     def create_or_update_vorlage(vorlagen_result)
-      v = Vorlage.find_or_create(stadt_id: vorlage["stadt_id"])
-      v.title = vorlage["title"]
-      v.detail_url = vorlage["detail_url"]
+      v = Vorlage.find_by_stadt_id( vorlagen_result["stadt_id"]) || Vorlage.create(stadt_id: vorlagen_result["stadt_id"])
+      v.title = vorlagen_result["title"]
+      v.detail_url = vorlagen_result["detail_url"]
       v.save
     end
 
