@@ -1,10 +1,15 @@
-# Offener Rat Münster
-[![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
-## Das offene Ratsinformationssystem für Münster
+---
+status: work-in-progress
+uri: http://offenerrat-ms.herokuapp.com/
+forum: http://forum.codeformuenster.org/t/offener-rat-munster/27
+code-climate: [![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
+---
 
-http://offenerrat-ms.herokuapp.com/
+# Offener Rat Münster
 
 Der Offene Rat Münster soll das politische Geschehen in Münster transparenter machen und mehr Bürgern die Möglichkeit geben sich umfassend zu informieren. 
+
+![screen shot 2015-03-06](https://cloud.githubusercontent.com/assets/225698/6537523/d1789ff0-c457-11e4-8cb4-b6484ce19def.png)
 
 ## Setup with Docker
 
