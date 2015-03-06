@@ -2,7 +2,6 @@
 status: work-in-progress
 uri: http://offenerrat-ms.herokuapp.com/
 forum: http://forum.codeformuenster.org/t/offener-rat-munster/27
-code-climate: [![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
 ---
 
 # Offener Rat Münster
@@ -37,7 +36,7 @@ Run the app:
 The app should now be available at [http://localhost:3333](http://localhost:3333).
 
 ## Contributing
-[![Stories in Ready](https://badge.waffle.io/codeformuenster/offenerrat-ms.png?label=ready&title=Ready)](https://waffle.io/codeformuenster/offenerrat-ms)
+[![Stories in Ready](https://badge.waffle.io/codeformuenster/offenerrat-ms.png?label=ready&title=Ready)](https://waffle.io/codeformuenster/offenerrat-ms) [![Code Climate](https://codeclimate.com/github/codeformuenster/offenerrat-ms.png)](https://codeclimate.com/github/codeformuenster/offenerrat-ms)
 
 Issues are managed in [Github Issues](https://github.com/codeformuenster/offenerrat-ms/issues?state=open). You can also view them on a [Kanban board](https://waffle.io/codeformuenster/offenerrat-ms).
 
