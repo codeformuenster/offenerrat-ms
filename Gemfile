@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,30 +12,30 @@ gem 'haml'
 
 gem "rack-timeout"
 
-gem 'kaminari'
+gem 'kaminari', '>= 0.14.1'
 
 gem 'newrelic_rpm'
 
 #search
-gem 'ransack' # MIT
-gem 'pg_search'
+gem 'ransack' , '>= 0.7.2' # MIT
+gem 'pg_search', '>= 0.6.4'
 gem 'has_scope'
 
 gem 'token_phrase'
 
-gem 'meta-tags', require: 'meta_tags'
+gem 'meta-tags', '1.5.0'
 
-gem 'activeadmin'
+gem 'activeadmin', '>= 0.6.0'
 
-gem 'glow'
-gem 'twitter-bootstrap-rails'
-gem 'jquery-minicolors-rails'
+gem 'glow', '>= 0.0.12'
+gem 'twitter-bootstrap-rails', '>= 2.2.7'
+gem 'jquery-minicolors-rails', '>= 0.0.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails', '~> 3.2.6'
+  gem 'coffee-rails', '~> 3.2.2'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
@@ -43,7 +43,7 @@ end
 
 group :development do
   gem "pry"
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.13.2'
   gem 'letter_opener'
 end
 
