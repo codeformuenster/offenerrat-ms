@@ -25,7 +25,7 @@ gem 'token_phrase'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem 'activeadmin'
+gem 'activeadmin', '>= 0.6.0'
 
 gem 'glow'
 gem 'twitter-bootstrap-rails'
