@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,17 +25,17 @@ gem 'token_phrase'
 
 gem 'meta-tags', require: 'meta_tags'
 
-gem 'activeadmin'
+gem 'activeadmin', '>= 0.6.0'
 
-gem 'glow'
-gem 'twitter-bootstrap-rails'
-gem 'jquery-minicolors-rails'
+gem 'glow', '>= 0.0.14'
+gem 'twitter-bootstrap-rails', '>= 2.2.7'
+gem 'jquery-minicolors-rails', '>= 0.0.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails', '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
@@ -43,7 +43,7 @@ end
 
 group :development do
   gem "pry"
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.13.2'
   gem 'letter_opener'
 end
 
